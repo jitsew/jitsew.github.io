@@ -1,7 +1,1227 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medewerkerskompas</title>
+  <style>
+#vraag-1 {
+  scroll-margin-top: 2em;
+}
+
+    html, body {
+      height: 100%;
+      background-color: #DCEAFF;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: #000000;
+      text-decoration: none;
+    }
+
+    .sterk { background-color: #9BC2E6 !important; }
+    .groeikans { background-color: #66F877 !important; }
+    .werkpunt { background-color: #FFFF00 !important; }
+    .onvoldoende { background-color: #FF0000 !important; }
+
+    .form-and-grid {
+      display: flex;
+      padding: 0px;
+    }
+
+    .form-and-grid input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .left-section {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 50%;
+    }
+
+    .left-section textarea {
+      margin-top: 20px;
+    }
+
+    .left-section hr {
+      margin-top: 35px;
+      margin-bottom: 15px;
+    }
+
+    .left-section h3 {
+      border: 3px solid #000;
+      border-radius: 4px;
+      margin-left: 25%;
+      margin-right: 25%;
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #F8CBAD;
+    }
+
+    .vraag-group {
+      display: grid;
+      align-items: center;
+      justify-self: center;
+      text-align: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+      width: 60%;
+    }
+
+    .vraag-group label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      margin: 2px 0;
+      border-radius: 5px;
+      position: relative;
+      box-sizing: border-box;
+      cursor: pointer;
+      font-weight: normal;
+      border: 3px solid transparent;
+      transition: filter 0.5s, opacity 0.5s, transform 0.5s, border 0.5s;
+    }
+
+    .vraag-group label:hover {
+      font-weight: bolder;
+    }
+
+    .grid .grid-cell:hover {
+      font-weight: bolder;
+    }
+
+    .feedback {
+      width: 60%;
+      height: 200px;
+    }
+
+    .grid {
+      position: sticky;
+      top: 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      width: 50%;
+      height: 100vh;
+      margin-left: auto;
+    }
+
+    .grid-cell {
+      height: 100%;
+      width: 100%;
+      background-color: #ddd;
+      border: 1px solid #000;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      font-size: 0.8vw;
+      transition: background-color 0.5s;
+
+    }
+
+    input[type="radio"] {
+      opacity: 0;
+      height: 1px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    /* VRAAG 1 */
+    #vraag-sterk1:checked ~ .left-section .vraag-group[data-group="vraag1"] label[for="vraag-sterk1"],
+    #vraag-groeikans1:checked ~ .left-section .vraag-group[data-group="vraag1"] label[for="vraag-groeikans1"],
+    #vraag-werkpunt1:checked ~ .left-section .vraag-group[data-group="vraag1"] label[for="vraag-werkpunt1"],
+    #vraag-onvoldoende1:checked ~ .left-section .vraag-group[data-group="vraag1"] label[for="vraag-onvoldoende1"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk1:checked ~ .left-section .vraag-group[data-group="vraag1"] label:not([for="vraag-sterk1"]),
+    #vraag-groeikans1:checked ~ .left-section .vraag-group[data-group="vraag1"] label:not([for="vraag-groeikans1"]),
+    #vraag-werkpunt1:checked ~ .left-section .vraag-group[data-group="vraag1"] label:not([for="vraag-werkpunt1"]),
+    #vraag-onvoldoende1:checked ~ .left-section .vraag-group[data-group="vraag1"] label:not([for="vraag-onvoldoende1"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+    /* VRAAG 2 */
+    #vraag-sterk2:checked ~ .left-section .vraag-group[data-group="vraag2"] label[for="vraag-sterk2"],
+    #vraag-groeikans2:checked ~ .left-section .vraag-group[data-group="vraag2"] label[for="vraag-groeikans2"],
+    #vraag-werkpunt2:checked ~ .left-section .vraag-group[data-group="vraag2"] label[for="vraag-werkpunt2"],
+    #vraag-onvoldoende2:checked ~ .left-section .vraag-group[data-group="vraag2"] label[for="vraag-onvoldoende2"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk2:checked ~ .left-section .vraag-group[data-group="vraag2"] label:not([for="vraag-sterk2"]),
+    #vraag-groeikans2:checked ~ .left-section .vraag-group[data-group="vraag2"] label:not([for="vraag-groeikans2"]),
+    #vraag-werkpunt2:checked ~ .left-section .vraag-group[data-group="vraag2"] label:not([for="vraag-werkpunt2"]),
+    #vraag-onvoldoende2:checked ~ .left-section .vraag-group[data-group="vraag2"] label:not([for="vraag-onvoldoende2"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+    /* VRAAG 3 */
+    #vraag-sterk3:checked ~ .left-section .vraag-group[data-group="vraag3"] label[for="vraag-sterk3"],
+    #vraag-groeikans3:checked ~ .left-section .vraag-group[data-group="vraag3"] label[for="vraag-groeikans3"],
+    #vraag-werkpunt3:checked ~ .left-section .vraag-group[data-group="vraag3"] label[for="vraag-werkpunt3"],
+    #vraag-onvoldoende3:checked ~ .left-section .vraag-group[data-group="vraag3"] label[for="vraag-onvoldoende3"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk3:checked ~ .left-section .vraag-group[data-group="vraag3"] label:not([for="vraag-sterk3"]),
+    #vraag-groeikans3:checked ~ .left-section .vraag-group[data-group="vraag3"] label:not([for="vraag-groeikans3"]),
+    #vraag-werkpunt3:checked ~ .left-section .vraag-group[data-group="vraag3"] label:not([for="vraag-werkpunt3"]),
+    #vraag-onvoldoende3:checked ~ .left-section .vraag-group[data-group="vraag3"] label:not([for="vraag-onvoldoende3"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+    /* VRAAG 4 */
+    #vraag-sterk4:checked ~ .left-section .vraag-group[data-group="vraag4"] label[for="vraag-sterk4"],
+    #vraag-groeikans4:checked ~ .left-section .vraag-group[data-group="vraag4"] label[for="vraag-groeikans4"],
+    #vraag-werkpunt4:checked ~ .left-section .vraag-group[data-group="vraag4"] label[for="vraag-werkpunt4"],
+    #vraag-onvoldoende4:checked ~ .left-section .vraag-group[data-group="vraag4"] label[for="vraag-onvoldoende4"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk4:checked ~ .left-section .vraag-group[data-group="vraag4"] label:not([for="vraag-sterk4"]),
+    #vraag-groeikans4:checked ~ .left-section .vraag-group[data-group="vraag4"] label:not([for="vraag-groeikans4"]),
+    #vraag-werkpunt4:checked ~ .left-section .vraag-group[data-group="vraag4"] label:not([for="vraag-werkpunt4"]),
+    #vraag-onvoldoende4:checked ~ .left-section .vraag-group[data-group="vraag4"] label:not([for="vraag-onvoldoende4"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 5 */
+    #vraag-sterk5:checked ~ .left-section .vraag-group[data-group="vraag5"] label[for="vraag-sterk5"],
+    #vraag-groeikans5:checked ~ .left-section .vraag-group[data-group="vraag5"] label[for="vraag-groeikans5"],
+    #vraag-werkpunt5:checked ~ .left-section .vraag-group[data-group="vraag5"] label[for="vraag-werkpunt5"],
+    #vraag-onvoldoende5:checked ~ .left-section .vraag-group[data-group="vraag5"] label[for="vraag-onvoldoende5"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk5:checked ~ .left-section .vraag-group[data-group="vraag5"] label:not([for="vraag-sterk5"]),
+    #vraag-groeikans5:checked ~ .left-section .vraag-group[data-group="vraag5"] label:not([for="vraag-groeikans5"]),
+    #vraag-werkpunt5:checked ~ .left-section .vraag-group[data-group="vraag5"] label:not([for="vraag-werkpunt5"]),
+    #vraag-onvoldoende5:checked ~ .left-section .vraag-group[data-group="vraag5"] label:not([for="vraag-onvoldoende5"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 6 */
+    #vraag-sterk6:checked ~ .left-section .vraag-group[data-group="vraag6"] label[for="vraag-sterk6"],
+    #vraag-groeikans6:checked ~ .left-section .vraag-group[data-group="vraag6"] label[for="vraag-groeikans6"],
+    #vraag-werkpunt6:checked ~ .left-section .vraag-group[data-group="vraag6"] label[for="vraag-werkpunt6"],
+    #vraag-onvoldoende6:checked ~ .left-section .vraag-group[data-group="vraag6"] label[for="vraag-onvoldoende6"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk6:checked ~ .left-section .vraag-group[data-group="vraag6"] label:not([for="vraag-sterk6"]),
+    #vraag-groeikans6:checked ~ .left-section .vraag-group[data-group="vraag6"] label:not([for="vraag-groeikans6"]),
+    #vraag-werkpunt6:checked ~ .left-section .vraag-group[data-group="vraag6"] label:not([for="vraag-werkpunt6"]),
+    #vraag-onvoldoende6:checked ~ .left-section .vraag-group[data-group="vraag6"] label:not([for="vraag-onvoldoende6"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 7 */
+    #vraag-sterk7:checked ~ .left-section .vraag-group[data-group="vraag7"] label[for="vraag-sterk7"],
+    #vraag-groeikans7:checked ~ .left-section .vraag-group[data-group="vraag7"] label[for="vraag-groeikans7"],
+    #vraag-werkpunt7:checked ~ .left-section .vraag-group[data-group="vraag7"] label[for="vraag-werkpunt7"],
+    #vraag-onvoldoende7:checked ~ .left-section .vraag-group[data-group="vraag7"] label[for="vraag-onvoldoende7"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk7:checked ~ .left-section .vraag-group[data-group="vraag7"] label:not([for="vraag-sterk7"]),
+    #vraag-groeikans7:checked ~ .left-section .vraag-group[data-group="vraag7"] label:not([for="vraag-groeikans7"]),
+    #vraag-werkpunt7:checked ~ .left-section .vraag-group[data-group="vraag7"] label:not([for="vraag-werkpunt7"]),
+    #vraag-onvoldoende7:checked ~ .left-section .vraag-group[data-group="vraag7"] label:not([for="vraag-onvoldoende7"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 8 */
+    #vraag-sterk8:checked ~ .left-section .vraag-group[data-group="vraag8"] label[for="vraag-sterk8"],
+    #vraag-groeikans8:checked ~ .left-section .vraag-group[data-group="vraag8"] label[for="vraag-groeikans8"],
+    #vraag-werkpunt8:checked ~ .left-section .vraag-group[data-group="vraag8"] label[for="vraag-werkpunt8"],
+    #vraag-onvoldoende8:checked ~ .left-section .vraag-group[data-group="vraag8"] label[for="vraag-onvoldoende8"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk8:checked ~ .left-section .vraag-group[data-group="vraag8"] label:not([for="vraag-sterk8"]),
+    #vraag-groeikans8:checked ~ .left-section .vraag-group[data-group="vraag8"] label:not([for="vraag-groeikans8"]),
+    #vraag-werkpunt8:checked ~ .left-section .vraag-group[data-group="vraag8"] label:not([for="vraag-werkpunt8"]),
+    #vraag-onvoldoende8:checked ~ .left-section .vraag-group[data-group="vraag8"] label:not([for="vraag-onvoldoende8"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 9 */
+    #vraag-sterk9:checked ~ .left-section .vraag-group[data-group="vraag9"] label[for="vraag-sterk9"],
+    #vraag-groeikans9:checked ~ .left-section .vraag-group[data-group="vraag9"] label[for="vraag-groeikans9"],
+    #vraag-werkpunt9:checked ~ .left-section .vraag-group[data-group="vraag9"] label[for="vraag-werkpunt9"],
+    #vraag-onvoldoende9:checked ~ .left-section .vraag-group[data-group="vraag9"] label[for="vraag-onvoldoende9"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk9:checked ~ .left-section .vraag-group[data-group="vraag9"] label:not([for="vraag-sterk9"]),
+    #vraag-groeikans9:checked ~ .left-section .vraag-group[data-group="vraag9"] label:not([for="vraag-groeikans9"]),
+    #vraag-werkpunt9:checked ~ .left-section .vraag-group[data-group="vraag9"] label:not([for="vraag-werkpunt9"]),
+    #vraag-onvoldoende9:checked ~ .left-section .vraag-group[data-group="vraag9"] label:not([for="vraag-onvoldoende9"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 10 */
+    #vraag-sterk10:checked ~ .left-section .vraag-group[data-group="vraag10"] label[for="vraag-sterk10"],
+    #vraag-groeikans10:checked ~ .left-section .vraag-group[data-group="vraag10"] label[for="vraag-groeikans10"],
+    #vraag-werkpunt10:checked ~ .left-section .vraag-group[data-group="vraag10"] label[for="vraag-werkpunt10"],
+    #vraag-onvoldoende10:checked ~ .left-section .vraag-group[data-group="vraag10"] label[for="vraag-onvoldoende10"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk10:checked ~ .left-section .vraag-group[data-group="vraag10"] label:not([for="vraag-sterk10"]),
+    #vraag-groeikans10:checked ~ .left-section .vraag-group[data-group="vraag10"] label:not([for="vraag-groeikans10"]),
+    #vraag-werkpunt10:checked ~ .left-section .vraag-group[data-group="vraag10"] label:not([for="vraag-werkpunt10"]),
+    #vraag-onvoldoende10:checked ~ .left-section .vraag-group[data-group="vraag10"] label:not([for="vraag-onvoldoende10"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 11 */
+    #vraag-sterk11:checked ~ .left-section .vraag-group[data-group="vraag11"] label[for="vraag-sterk11"],
+    #vraag-groeikans11:checked ~ .left-section .vraag-group[data-group="vraag11"] label[for="vraag-groeikans11"],
+    #vraag-werkpunt11:checked ~ .left-section .vraag-group[data-group="vraag11"] label[for="vraag-werkpunt11"],
+    #vraag-onvoldoende11:checked ~ .left-section .vraag-group[data-group="vraag11"] label[for="vraag-onvoldoende11"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk11:checked ~ .left-section .vraag-group[data-group="vraag11"] label:not([for="vraag-sterk11"]),
+    #vraag-groeikans11:checked ~ .left-section .vraag-group[data-group="vraag11"] label:not([for="vraag-groeikans11"]),
+    #vraag-werkpunt11:checked ~ .left-section .vraag-group[data-group="vraag11"] label:not([for="vraag-werkpunt11"]),
+    #vraag-onvoldoende11:checked ~ .left-section .vraag-group[data-group="vraag11"] label:not([for="vraag-onvoldoende11"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 12 */
+    #vraag-sterk12:checked ~ .left-section .vraag-group[data-group="vraag12"] label[for="vraag-sterk12"],
+    #vraag-groeikans12:checked ~ .left-section .vraag-group[data-group="vraag12"] label[for="vraag-groeikans12"],
+    #vraag-werkpunt12:checked ~ .left-section .vraag-group[data-group="vraag12"] label[for="vraag-werkpunt12"],
+    #vraag-onvoldoende12:checked ~ .left-section .vraag-group[data-group="vraag12"] label[for="vraag-onvoldoende12"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk12:checked ~ .left-section .vraag-group[data-group="vraag12"] label:not([for="vraag-sterk12"]),
+    #vraag-groeikans12:checked ~ .left-section .vraag-group[data-group="vraag12"] label:not([for="vraag-groeikans12"]),
+    #vraag-werkpunt12:checked ~ .left-section .vraag-group[data-group="vraag12"] label:not([for="vraag-werkpunt12"]),
+    #vraag-onvoldoende12:checked ~ .left-section .vraag-group[data-group="vraag12"] label:not([for="vraag-onvoldoende12"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 13 */
+    #vraag-sterk13:checked ~ .left-section .vraag-group[data-group="vraag13"] label[for="vraag-sterk13"],
+    #vraag-groeikans13:checked ~ .left-section .vraag-group[data-group="vraag13"] label[for="vraag-groeikans13"],
+    #vraag-werkpunt13:checked ~ .left-section .vraag-group[data-group="vraag13"] label[for="vraag-werkpunt13"],
+    #vraag-onvoldoende13:checked ~ .left-section .vraag-group[data-group="vraag13"] label[for="vraag-onvoldoende13"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk13:checked ~ .left-section .vraag-group[data-group="vraag13"] label:not([for="vraag-sterk13"]),
+    #vraag-groeikans13:checked ~ .left-section .vraag-group[data-group="vraag13"] label:not([for="vraag-groeikans13"]),
+    #vraag-werkpunt13:checked ~ .left-section .vraag-group[data-group="vraag13"] label:not([for="vraag-werkpunt13"]),
+    #vraag-onvoldoende13:checked ~ .left-section .vraag-group[data-group="vraag13"] label:not([for="vraag-onvoldoende13"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 14 */
+    #vraag-sterk14:checked ~ .left-section .vraag-group[data-group="vraag14"] label[for="vraag-sterk14"],
+    #vraag-groeikans14:checked ~ .left-section .vraag-group[data-group="vraag14"] label[for="vraag-groeikans14"],
+    #vraag-werkpunt14:checked ~ .left-section .vraag-group[data-group="vraag14"] label[for="vraag-werkpunt14"],
+    #vraag-onvoldoende14:checked ~ .left-section .vraag-group[data-group="vraag14"] label[for="vraag-onvoldoende14"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk14:checked ~ .left-section .vraag-group[data-group="vraag14"] label:not([for="vraag-sterk14"]),
+    #vraag-groeikans14:checked ~ .left-section .vraag-group[data-group="vraag14"] label:not([for="vraag-groeikans14"]),
+    #vraag-werkpunt14:checked ~ .left-section .vraag-group[data-group="vraag14"] label:not([for="vraag-werkpunt14"]),
+    #vraag-onvoldoende14:checked ~ .left-section .vraag-group[data-group="vraag14"] label:not([for="vraag-onvoldoende14"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 15 */
+    #vraag-sterk15:checked ~ .left-section .vraag-group[data-group="vraag15"] label[for="vraag-sterk15"],
+    #vraag-groeikans15:checked ~ .left-section .vraag-group[data-group="vraag15"] label[for="vraag-groeikans15"],
+    #vraag-werkpunt15:checked ~ .left-section .vraag-group[data-group="vraag15"] label[for="vraag-werkpunt15"],
+    #vraag-onvoldoende15:checked ~ .left-section .vraag-group[data-group="vraag15"] label[for="vraag-onvoldoende15"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk15:checked ~ .left-section .vraag-group[data-group="vraag15"] label:not([for="vraag-sterk15"]),
+    #vraag-groeikans15:checked ~ .left-section .vraag-group[data-group="vraag15"] label:not([for="vraag-groeikans15"]),
+    #vraag-werkpunt15:checked ~ .left-section .vraag-group[data-group="vraag15"] label:not([for="vraag-werkpunt15"]),
+    #vraag-onvoldoende15:checked ~ .left-section .vraag-group[data-group="vraag15"] label:not([for="vraag-onvoldoende15"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 16 */
+    #vraag-sterk16:checked ~ .left-section .vraag-group[data-group="vraag16"] label[for="vraag-sterk16"],
+    #vraag-groeikans16:checked ~ .left-section .vraag-group[data-group="vraag16"] label[for="vraag-groeikans16"],
+    #vraag-werkpunt16:checked ~ .left-section .vraag-group[data-group="vraag16"] label[for="vraag-werkpunt16"],
+    #vraag-onvoldoende16:checked ~ .left-section .vraag-group[data-group="vraag16"] label[for="vraag-onvoldoende16"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk16:checked ~ .left-section .vraag-group[data-group="vraag16"] label:not([for="vraag-sterk16"]),
+    #vraag-groeikans16:checked ~ .left-section .vraag-group[data-group="vraag16"] label:not([for="vraag-groeikans16"]),
+    #vraag-werkpunt16:checked ~ .left-section .vraag-group[data-group="vraag16"] label:not([for="vraag-werkpunt16"]),
+    #vraag-onvoldoende16:checked ~ .left-section .vraag-group[data-group="vraag16"] label:not([for="vraag-onvoldoende16"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 17 */
+    #vraag-sterk17:checked ~ .left-section .vraag-group[data-group="vraag17"] label[for="vraag-sterk17"],
+    #vraag-groeikans17:checked ~ .left-section .vraag-group[data-group="vraag17"] label[for="vraag-groeikans17"],
+    #vraag-werkpunt17:checked ~ .left-section .vraag-group[data-group="vraag17"] label[for="vraag-werkpunt17"],
+    #vraag-onvoldoende17:checked ~ .left-section .vraag-group[data-group="vraag17"] label[for="vraag-onvoldoende17"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk17:checked ~ .left-section .vraag-group[data-group="vraag17"] label:not([for="vraag-sterk17"]),
+    #vraag-groeikans17:checked ~ .left-section .vraag-group[data-group="vraag17"] label:not([for="vraag-groeikans17"]),
+    #vraag-werkpunt17:checked ~ .left-section .vraag-group[data-group="vraag17"] label:not([for="vraag-werkpunt17"]),
+    #vraag-onvoldoende17:checked ~ .left-section .vraag-group[data-group="vraag17"] label:not([for="vraag-onvoldoende17"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 18 */
+    #vraag-sterk18:checked ~ .left-section .vraag-group[data-group="vraag18"] label[for="vraag-sterk18"],
+    #vraag-groeikans18:checked ~ .left-section .vraag-group[data-group="vraag18"] label[for="vraag-groeikans18"],
+    #vraag-werkpunt18:checked ~ .left-section .vraag-group[data-group="vraag18"] label[for="vraag-werkpunt18"],
+    #vraag-onvoldoende18:checked ~ .left-section .vraag-group[data-group="vraag18"] label[for="vraag-onvoldoende18"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk18:checked ~ .left-section .vraag-group[data-group="vraag18"] label:not([for="vraag-sterk18"]),
+    #vraag-groeikans18:checked ~ .left-section .vraag-group[data-group="vraag18"] label:not([for="vraag-groeikans18"]),
+    #vraag-werkpunt18:checked ~ .left-section .vraag-group[data-group="vraag18"] label:not([for="vraag-werkpunt18"]),
+    #vraag-onvoldoende18:checked ~ .left-section .vraag-group[data-group="vraag18"] label:not([for="vraag-onvoldoende18"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 19 */
+    #vraag-sterk19:checked ~ .left-section .vraag-group[data-group="vraag19"] label[for="vraag-sterk19"],
+    #vraag-groeikans19:checked ~ .left-section .vraag-group[data-group="vraag19"] label[for="vraag-groeikans19"],
+    #vraag-werkpunt19:checked ~ .left-section .vraag-group[data-group="vraag19"] label[for="vraag-werkpunt19"],
+    #vraag-onvoldoende19:checked ~ .left-section .vraag-group[data-group="vraag19"] label[for="vraag-onvoldoende19"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk19:checked ~ .left-section .vraag-group[data-group="vraag19"] label:not([for="vraag-sterk19"]),
+    #vraag-groeikans19:checked ~ .left-section .vraag-group[data-group="vraag19"] label:not([for="vraag-groeikans19"]),
+    #vraag-werkpunt19:checked ~ .left-section .vraag-group[data-group="vraag19"] label:not([for="vraag-werkpunt19"]),
+    #vraag-onvoldoende19:checked ~ .left-section .vraag-group[data-group="vraag19"] label:not([for="vraag-onvoldoende19"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 20 */
+    #vraag-sterk20:checked ~ .left-section .vraag-group[data-group="vraag20"] label[for="vraag-sterk20"],
+    #vraag-groeikans20:checked ~ .left-section .vraag-group[data-group="vraag20"] label[for="vraag-groeikans20"],
+    #vraag-werkpunt20:checked ~ .left-section .vraag-group[data-group="vraag20"] label[for="vraag-werkpunt20"],
+    #vraag-onvoldoende20:checked ~ .left-section .vraag-group[data-group="vraag20"] label[for="vraag-onvoldoende20"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk20:checked ~ .left-section .vraag-group[data-group="vraag20"] label:not([for="vraag-sterk20"]),
+    #vraag-groeikans20:checked ~ .left-section .vraag-group[data-group="vraag20"] label:not([for="vraag-groeikans20"]),
+    #vraag-werkpunt20:checked ~ .left-section .vraag-group[data-group="vraag20"] label:not([for="vraag-werkpunt20"]),
+    #vraag-onvoldoende20:checked ~ .left-section .vraag-group[data-group="vraag20"] label:not([for="vraag-onvoldoende20"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 21 */
+    #vraag-sterk21:checked ~ .left-section .vraag-group[data-group="vraag21"] label[for="vraag-sterk21"],
+    #vraag-groeikans21:checked ~ .left-section .vraag-group[data-group="vraag21"] label[for="vraag-groeikans21"],
+    #vraag-werkpunt21:checked ~ .left-section .vraag-group[data-group="vraag21"] label[for="vraag-werkpunt21"],
+    #vraag-onvoldoende21:checked ~ .left-section .vraag-group[data-group="vraag21"] label[for="vraag-onvoldoende21"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk21:checked ~ .left-section .vraag-group[data-group="vraag21"] label:not([for="vraag-sterk21"]),
+    #vraag-groeikans21:checked ~ .left-section .vraag-group[data-group="vraag21"] label:not([for="vraag-groeikans21"]),
+    #vraag-werkpunt21:checked ~ .left-section .vraag-group[data-group="vraag21"] label:not([for="vraag-werkpunt21"]),
+    #vraag-onvoldoende21:checked ~ .left-section .vraag-group[data-group="vraag21"] label:not([for="vraag-onvoldoende21"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 22 */
+    #vraag-sterk22:checked ~ .left-section .vraag-group[data-group="vraag22"] label[for="vraag-sterk22"],
+    #vraag-groeikans22:checked ~ .left-section .vraag-group[data-group="vraag22"] label[for="vraag-groeikans22"],
+    #vraag-werkpunt22:checked ~ .left-section .vraag-group[data-group="vraag22"] label[for="vraag-werkpunt22"],
+    #vraag-onvoldoende22:checked ~ .left-section .vraag-group[data-group="vraag22"] label[for="vraag-onvoldoende22"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk22:checked ~ .left-section .vraag-group[data-group="vraag22"] label:not([for="vraag-sterk22"]),
+    #vraag-groeikans22:checked ~ .left-section .vraag-group[data-group="vraag22"] label:not([for="vraag-groeikans22"]),
+    #vraag-werkpunt22:checked ~ .left-section .vraag-group[data-group="vraag22"] label:not([for="vraag-werkpunt22"]),
+    #vraag-onvoldoende22:checked ~ .left-section .vraag-group[data-group="vraag22"] label:not([for="vraag-onvoldoende22"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 23 */
+    #vraag-sterk23:checked ~ .left-section .vraag-group[data-group="vraag23"] label[for="vraag-sterk23"],
+    #vraag-groeikans23:checked ~ .left-section .vraag-group[data-group="vraag23"] label[for="vraag-groeikans23"],
+    #vraag-werkpunt23:checked ~ .left-section .vraag-group[data-group="vraag23"] label[for="vraag-werkpunt23"],
+    #vraag-onvoldoende23:checked ~ .left-section .vraag-group[data-group="vraag23"] label[for="vraag-onvoldoende23"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk23:checked ~ .left-section .vraag-group[data-group="vraag23"] label:not([for="vraag-sterk23"]),
+    #vraag-groeikans23:checked ~ .left-section .vraag-group[data-group="vraag23"] label:not([for="vraag-groeikans23"]),
+    #vraag-werkpunt23:checked ~ .left-section .vraag-group[data-group="vraag23"] label:not([for="vraag-werkpunt23"]),
+    #vraag-onvoldoende23:checked ~ .left-section .vraag-group[data-group="vraag23"] label:not([for="vraag-onvoldoende23"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 24 */
+    #vraag-sterk24:checked ~ .left-section .vraag-group[data-group="vraag24"] label[for="vraag-sterk24"],
+    #vraag-groeikans24:checked ~ .left-section .vraag-group[data-group="vraag24"] label[for="vraag-groeikans24"],
+    #vraag-werkpunt24:checked ~ .left-section .vraag-group[data-group="vraag24"] label[for="vraag-werkpunt24"],
+    #vraag-onvoldoende24:checked ~ .left-section .vraag-group[data-group="vraag24"] label[for="vraag-onvoldoende24"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk24:checked ~ .left-section .vraag-group[data-group="vraag24"] label:not([for="vraag-sterk24"]),
+    #vraag-groeikans24:checked ~ .left-section .vraag-group[data-group="vraag24"] label:not([for="vraag-groeikans24"]),
+    #vraag-werkpunt24:checked ~ .left-section .vraag-group[data-group="vraag24"] label:not([for="vraag-werkpunt24"]),
+    #vraag-onvoldoende24:checked ~ .left-section .vraag-group[data-group="vraag24"] label:not([for="vraag-onvoldoende24"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+/* VRAAG 25 */
+    #vraag-sterk25:checked ~ .left-section .vraag-group[data-group="vraag25"] label[for="vraag-sterk25"],
+    #vraag-groeikans25:checked ~ .left-section .vraag-group[data-group="vraag25"] label[for="vraag-groeikans25"],
+    #vraag-werkpunt25:checked ~ .left-section .vraag-group[data-group="vraag25"] label[for="vraag-werkpunt25"],
+    #vraag-onvoldoende25:checked ~ .left-section .vraag-group[data-group="vraag25"] label[for="vraag-onvoldoende25"] {
+      border: 3px solid black;
+      font-weight: bolder;
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #vraag-sterk25:checked ~ .left-section .vraag-group[data-group="vraag25"] label:not([for="vraag-sterk25"]),
+    #vraag-groeikans25:checked ~ .left-section .vraag-group[data-group="vraag25"] label:not([for="vraag-groeikans25"]),
+    #vraag-werkpunt25:checked ~ .left-section .vraag-group[data-group="vraag25"] label:not([for="vraag-werkpunt25"]),
+    #vraag-onvoldoende25:checked ~ .left-section .vraag-group[data-group="vraag25"] label:not([for="vraag-onvoldoende25"]) {
+      filter: grayscale(60%) brightness(0.9);
+      opacity: 0.8;
+      transform: scale(0.97);
+    }
+
+
+    /* CSS rules to color cell1 based on vraag1 radio selection */
+    #vraag-sterk1:checked ~ .grid #cell1 { background-color: #9BC2E6; }
+    #vraag-groeikans1:checked ~ .grid #cell1 { background-color: #66F877; }
+    #vraag-werkpunt1:checked ~ .grid #cell1 { background-color: #FFFF00; }
+    #vraag-onvoldoende1:checked ~ .grid #cell1 { background-color: #FF0000; }
+
+    /* === vraag2 -> cell2 === */
+    #vraag-sterk2:checked ~ .grid #cell2 { background-color: #9BC2E6; }
+    #vraag-groeikans2:checked ~ .grid #cell2 { background-color: #66F877; }
+    #vraag-werkpunt2:checked ~ .grid #cell2 { background-color: #FFFF00; }
+    #vraag-onvoldoende2:checked ~ .grid #cell2 { background-color: #FF0000; }
+
+    /* === vraag3 -> cell3 === */
+    #vraag-sterk3:checked ~ .grid #cell3 { background-color: #9BC2E6; }
+    #vraag-groeikans3:checked ~ .grid #cell3 { background-color: #66F877; }
+    #vraag-werkpunt3:checked ~ .grid #cell3 { background-color: #FFFF00; }
+    #vraag-onvoldoende3:checked ~ .grid #cell3 { background-color: #FF0000; }
+
+    /* === vraag4 -> cell4 === */
+    #vraag-sterk4:checked ~ .grid #cell4 { background-color: #9BC2E6; }
+    #vraag-groeikans4:checked ~ .grid #cell4 { background-color: #66F877; }
+    #vraag-werkpunt4:checked ~ .grid #cell4 { background-color: #FFFF00; }
+    #vraag-onvoldoende4:checked ~ .grid #cell4 { background-color: #FF0000; }
+
+    /* === vraag5 -> cell5 === */
+    #vraag-sterk5:checked ~ .grid #cell5 { background-color: #9BC2E6; }
+    #vraag-groeikans5:checked ~ .grid #cell5 { background-color: #66F877; }
+    #vraag-werkpunt5:checked ~ .grid #cell5 { background-color: #FFFF00; }
+    #vraag-onvoldoende5:checked ~ .grid #cell5 { background-color: #FF0000; }
+
+    /* === vraag6 -> cell6 === */
+    #vraag-sterk6:checked ~ .grid #cell6 { background-color: #9BC2E6; }
+    #vraag-groeikans6:checked ~ .grid #cell6 { background-color: #66F877; }
+    #vraag-werkpunt6:checked ~ .grid #cell6 { background-color: #FFFF00; }
+    #vraag-onvoldoende6:checked ~ .grid #cell6 { background-color: #FF0000; }
+
+    /* === vraag7 -> cell7 === */
+    #vraag-sterk7:checked ~ .grid #cell7 { background-color: #9BC2E6; }
+    #vraag-groeikans7:checked ~ .grid #cell7 { background-color: #66F877; }
+    #vraag-werkpunt7:checked ~ .grid #cell7 { background-color: #FFFF00; }
+    #vraag-onvoldoende7:checked ~ .grid #cell7 { background-color: #FF0000; }
+
+    /* === vraag8 -> cell8 === */
+    #vraag-sterk8:checked ~ .grid #cell8 { background-color: #9BC2E6; }
+    #vraag-groeikans8:checked ~ .grid #cell8 { background-color: #66F877; }
+    #vraag-werkpunt8:checked ~ .grid #cell8 { background-color: #FFFF00; }
+    #vraag-onvoldoende8:checked ~ .grid #cell8 { background-color: #FF0000; }
+
+    /* === vraag9 -> cell9 === */
+    #vraag-sterk9:checked ~ .grid #cell9 { background-color: #9BC2E6; }
+    #vraag-groeikans9:checked ~ .grid #cell9 { background-color: #66F877; }
+    #vraag-werkpunt9:checked ~ .grid #cell9 { background-color: #FFFF00; }
+    #vraag-onvoldoende9:checked ~ .grid #cell9 { background-color: #FF0000; }
+
+    /* === vraag10 -> cell10 === */
+    #vraag-sterk10:checked ~ .grid #cell10 { background-color: #9BC2E6; }
+    #vraag-groeikans10:checked ~ .grid #cell10 { background-color: #66F877; }
+    #vraag-werkpunt10:checked ~ .grid #cell10 { background-color: #FFFF00; }
+    #vraag-onvoldoende10:checked ~ .grid #cell10 { background-color: #FF0000; }
+
+    /* === vraag11 -> cell11 === */
+    #vraag-sterk11:checked ~ .grid #cell11 { background-color: #9BC2E6; }
+    #vraag-groeikans11:checked ~ .grid #cell11 { background-color: #66F877; }
+    #vraag-werkpunt11:checked ~ .grid #cell11 { background-color: #FFFF00; }
+    #vraag-onvoldoende11:checked ~ .grid #cell11 { background-color: #FF0000; }
+
+    /* === vraag12 -> cell12 === */
+    #vraag-sterk12:checked ~ .grid #cell12 { background-color: #9BC2E6; }
+    #vraag-groeikans12:checked ~ .grid #cell12 { background-color: #66F877; }
+    #vraag-werkpunt12:checked ~ .grid #cell12 { background-color: #FFFF00; }
+    #vraag-onvoldoende12:checked ~ .grid #cell12 { background-color: #FF0000; }
+
+    /* === vraag13 -> cell13 === */
+    #vraag-sterk13:checked ~ .grid #cell13 { background-color: #9BC2E6; }
+    #vraag-groeikans13:checked ~ .grid #cell13 { background-color: #66F877; }
+    #vraag-werkpunt13:checked ~ .grid #cell13 { background-color: #FFFF00; }
+    #vraag-onvoldoende13:checked ~ .grid #cell13 { background-color: #FF0000; }
+
+    /* === vraag14 -> cell14 === */
+    #vraag-sterk14:checked ~ .grid #cell14 { background-color: #9BC2E6; }
+    #vraag-groeikans14:checked ~ .grid #cell14 { background-color: #66F877; }
+    #vraag-werkpunt14:checked ~ .grid #cell14 { background-color: #FFFF00; }
+    #vraag-onvoldoende14:checked ~ .grid #cell14 { background-color: #FF0000; }
+
+    /* === vraag15 -> cell15 === */
+    #vraag-sterk15:checked ~ .grid #cell15 { background-color: #9BC2E6; }
+    #vraag-groeikans15:checked ~ .grid #cell15 { background-color: #66F877; }
+    #vraag-werkpunt15:checked ~ .grid #cell15 { background-color: #FFFF00; }
+    #vraag-onvoldoende15:checked ~ .grid #cell15 { background-color: #FF0000; }
+
+    /* === vraag16 -> cell16 === */
+    #vraag-sterk16:checked ~ .grid #cell16 { background-color: #9BC2E6; }
+    #vraag-groeikans16:checked ~ .grid #cell16 { background-color: #66F877; }
+    #vraag-werkpunt16:checked ~ .grid #cell16 { background-color: #FFFF00; }
+    #vraag-onvoldoende16:checked ~ .grid #cell16 { background-color: #FF0000; }
+
+    /* === vraag17 -> cell17 === */
+    #vraag-sterk17:checked ~ .grid #cell17 { background-color: #9BC2E6; }
+    #vraag-groeikans17:checked ~ .grid #cell17 { background-color: #66F877; }
+    #vraag-werkpunt17:checked ~ .grid #cell17 { background-color: #FFFF00; }
+    #vraag-onvoldoende17:checked ~ .grid #cell17 { background-color: #FF0000; }
+
+    /* === vraag18 -> cell18 === */
+    #vraag-sterk18:checked ~ .grid #cell18 { background-color: #9BC2E6; }
+    #vraag-groeikans18:checked ~ .grid #cell18 { background-color: #66F877; }
+    #vraag-werkpunt18:checked ~ .grid #cell18 { background-color: #FFFF00; }
+    #vraag-onvoldoende18:checked ~ .grid #cell18 { background-color: #FF0000; }
+
+    /* === vraag19 -> cell19 === */
+    #vraag-sterk19:checked ~ .grid #cell19 { background-color: #9BC2E6; }
+    #vraag-groeikans19:checked ~ .grid #cell19 { background-color: #66F877; }
+    #vraag-werkpunt19:checked ~ .grid #cell19 { background-color: #FFFF00; }
+    #vraag-onvoldoende19:checked ~ .grid #cell19 { background-color: #FF0000; }
+
+    /* === vraag20 -> cell20 === */
+    #vraag-sterk20:checked ~ .grid #cell20 { background-color: #9BC2E6; }
+    #vraag-groeikans20:checked ~ .grid #cell20 { background-color: #66F877; }
+    #vraag-werkpunt20:checked ~ .grid #cell20 { background-color: #FFFF00; }
+    #vraag-onvoldoende20:checked ~ .grid #cell20 { background-color: #FF0000; }
+
+    /* === vraag21 -> cell21 === */
+    #vraag-sterk21:checked ~ .grid #cell21 { background-color: #9BC2E6; }
+    #vraag-groeikans21:checked ~ .grid #cell21 { background-color: #66F877; }
+    #vraag-werkpunt21:checked ~ .grid #cell21 { background-color: #FFFF00; }
+    #vraag-onvoldoende21:checked ~ .grid #cell21 { background-color: #FF0000; }
+
+    /* === vraag22 -> cell22 === */
+    #vraag-sterk22:checked ~ .grid #cell22 { background-color: #9BC2E6; }
+    #vraag-groeikans22:checked ~ .grid #cell22 { background-color: #66F877; }
+    #vraag-werkpunt22:checked ~ .grid #cell22 { background-color: #FFFF00; }
+    #vraag-onvoldoende22:checked ~ .grid #cell22 { background-color: #FF0000; }
+
+    /* === vraag23 -> cell23 === */
+    #vraag-sterk23:checked ~ .grid #cell23 { background-color: #9BC2E6; }
+    #vraag-groeikans23:checked ~ .grid #cell23 { background-color: #66F877; }
+    #vraag-werkpunt23:checked ~ .grid #cell23 { background-color: #FFFF00; }
+    #vraag-onvoldoende23:checked ~ .grid #cell23 { background-color: #FF0000; }
+
+    /* === vraag24 -> cell24 === */
+    #vraag-sterk24:checked ~ .grid #cell24 { background-color: #9BC2E6; }
+    #vraag-groeikans24:checked ~ .grid #cell24 { background-color: #66F877; }
+    #vraag-werkpunt24:checked ~ .grid #cell24 { background-color: #FFFF00; }
+    #vraag-onvoldoende24:checked ~ .grid #cell24 { background-color: #FF0000; }
+
+    /* === vraag25 -> cell25 === */
+    #vraag-sterk25:checked ~ .grid #cell25 { background-color: #9BC2E6; }
+    #vraag-groeikans25:checked ~ .grid #cell25 { background-color: #66F877; }
+    #vraag-werkpunt25:checked ~ .grid #cell25 { background-color: #FFFF00; }
+    #vraag-onvoldoende25:checked ~ .grid #cell25 { background-color: #FF0000; }
+    
+  </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+  <form class="form-and-grid" target="_self">
+    <input type="radio" name="vraag1" id="vraag-sterk1">
+    <input type="radio" name="vraag1" id="vraag-groeikans1">
+    <input type="radio" name="vraag1" id="vraag-werkpunt1">
+    <input type="radio" name="vraag1" id="vraag-onvoldoende1">
+
+    <input type="radio" name="vraag2" id="vraag-sterk2">
+    <input type="radio" name="vraag2" id="vraag-groeikans2">
+    <input type="radio" name="vraag2" id="vraag-werkpunt2">
+    <input type="radio" name="vraag2" id="vraag-onvoldoende2">
+
+    <input type="radio" name="vraag3" id="vraag-sterk3">
+    <input type="radio" name="vraag3" id="vraag-groeikans3">
+    <input type="radio" name="vraag3" id="vraag-werkpunt3">
+    <input type="radio" name="vraag3" id="vraag-onvoldoende3">
+
+    <input type="radio" name="vraag4" id="vraag-sterk4">
+    <input type="radio" name="vraag4" id="vraag-groeikans4">
+    <input type="radio" name="vraag4" id="vraag-werkpunt4">
+    <input type="radio" name="vraag4" id="vraag-onvoldoende4">
+
+    <input type="radio" name="vraag5" id="vraag-sterk5">
+    <input type="radio" name="vraag5" id="vraag-groeikans5">
+    <input type="radio" name="vraag5" id="vraag-werkpunt5">
+    <input type="radio" name="vraag5" id="vraag-onvoldoende5">
+
+    <input type="radio" name="vraag6" id="vraag-sterk6">
+    <input type="radio" name="vraag6" id="vraag-groeikans6"> 
+    <input type="radio" name="vraag6" id="vraag-werkpunt6"> 
+    <input type="radio" name="vraag6" id="vraag-onvoldoende6">
+
+    <input type="radio" name="vraag7" id="vraag-sterk7">
+    <input type="radio" name="vraag7" id="vraag-groeikans7"> 
+    <input type="radio" name="vraag7" id="vraag-werkpunt7"> 
+    <input type="radio" name="vraag7" id="vraag-onvoldoende7">
+
+    <input type="radio" name="vraag8" id="vraag-sterk8">
+    <input type="radio" name="vraag8" id="vraag-groeikans8"> 
+    <input type="radio" name="vraag8" id="vraag-werkpunt8"> 
+    <input type="radio" name="vraag8" id="vraag-onvoldoende8">
+
+    <input type="radio" name="vraag9" id="vraag-sterk9">
+    <input type="radio" name="vraag9" id="vraag-groeikans9"> 
+    <input type="radio" name="vraag9" id="vraag-werkpunt9"> 
+    <input type="radio" name="vraag9" id="vraag-onvoldoende9">
+
+    <input type="radio" name="vraag10" id="vraag-sterk10">
+    <input type="radio" name="vraag10" id="vraag-groeikans10"> 
+    <input type="radio" name="vraag10" id="vraag-werkpunt10"> 
+    <input type="radio" name="vraag10" id="vraag-onvoldoende10">
+
+    <input type="radio" name="vraag11" id="vraag-sterk11">
+    <input type="radio" name="vraag11" id="vraag-groeikans11"> 
+    <input type="radio" name="vraag11" id="vraag-werkpunt11"> 
+    <input type="radio" name="vraag11" id="vraag-onvoldoende11">
+
+    <input type="radio" name="vraag12" id="vraag-sterk12">
+    <input type="radio" name="vraag12" id="vraag-groeikans12"> 
+    <input type="radio" name="vraag12" id="vraag-werkpunt12"> 
+    <input type="radio" name="vraag12" id="vraag-onvoldoende12">
+
+    <input type="radio" name="vraag13" id="vraag-sterk13">
+    <input type="radio" name="vraag13" id="vraag-groeikans13"> 
+    <input type="radio" name="vraag13" id="vraag-werkpunt13"> 
+    <input type="radio" name="vraag13" id="vraag-onvoldoende13">
+
+    <input type="radio" name="vraag14" id="vraag-sterk14">
+    <input type="radio" name="vraag14" id="vraag-groeikans14"> 
+    <input type="radio" name="vraag14" id="vraag-werkpunt14"> 
+    <input type="radio" name="vraag14" id="vraag-onvoldoende14">
+
+    <input type="radio" name="vraag15" id="vraag-sterk15">
+    <input type="radio" name="vraag15" id="vraag-groeikans15"> 
+    <input type="radio" name="vraag15" id="vraag-werkpunt15"> 
+    <input type="radio" name="vraag15" id="vraag-onvoldoende15">
+
+    <input type="radio" name="vraag16" id="vraag-sterk16">
+    <input type="radio" name="vraag16" id="vraag-groeikans16"> 
+    <input type="radio" name="vraag16" id="vraag-werkpunt16"> 
+    <input type="radio" name="vraag16" id="vraag-onvoldoende16">
+
+    <input type="radio" name="vraag17" id="vraag-sterk17">
+    <input type="radio" name="vraag17" id="vraag-groeikans17"> 
+    <input type="radio" name="vraag17" id="vraag-werkpunt17"> 
+    <input type="radio" name="vraag17" id="vraag-onvoldoende17">
+
+    <input type="radio" name="vraag18" id="vraag-sterk18">
+    <input type="radio" name="vraag18" id="vraag-groeikans18"> 
+    <input type="radio" name="vraag18" id="vraag-werkpunt18"> 
+    <input type="radio" name="vraag18" id="vraag-onvoldoende18">
+
+    <input type="radio" name="vraag19" id="vraag-sterk19">
+    <input type="radio" name="vraag19" id="vraag-groeikans19"> 
+    <input type="radio" name="vraag19" id="vraag-werkpunt19"> 
+    <input type="radio" name="vraag19" id="vraag-onvoldoende19">
+
+    <input type="radio" name="vraag20" id="vraag-sterk20">
+    <input type="radio" name="vraag20" id="vraag-groeikans20"> 
+    <input type="radio" name="vraag20" id="vraag-werkpunt20"> 
+    <input type="radio" name="vraag20" id="vraag-onvoldoende20">
+
+    <input type="radio" name="vraag21" id="vraag-sterk21">
+    <input type="radio" name="vraag21" id="vraag-groeikans21"> 
+    <input type="radio" name="vraag21" id="vraag-werkpunt21"> 
+    <input type="radio" name="vraag21" id="vraag-onvoldoende21">
+
+    <input type="radio" name="vraag22" id="vraag-sterk22">
+    <input type="radio" name="vraag22" id="vraag-groeikans22"> 
+    <input type="radio" name="vraag22" id="vraag-werkpunt22"> 
+    <input type="radio" name="vraag22" id="vraag-onvoldoende22">
+
+    <input type="radio" name="vraag23" id="vraag-sterk23">
+    <input type="radio" name="vraag23" id="vraag-groeikans23"> 
+    <input type="radio" name="vraag23" id="vraag-werkpunt23"> 
+    <input type="radio" name="vraag23" id="vraag-onvoldoende23">
+
+    <input type="radio" name="vraag24" id="vraag-sterk24">
+    <input type="radio" name="vraag24" id="vraag-groeikans24"> 
+    <input type="radio" name="vraag24" id="vraag-werkpunt24"> 
+    <input type="radio" name="vraag24" id="vraag-onvoldoende24">
+
+    <input type="radio" name="vraag25" id="vraag-sterk25">
+    <input type="radio" name="vraag25" id="vraag-groeikans25"> 
+    <input type="radio" name="vraag25" id="vraag-werkpunt25"> 
+    <input type="radio" name="vraag25" id="vraag-onvoldoende25">
+
+
+    <div class="left-section">
+      <h2>MedewerkersKOMPAS Evaluatieformulier</h2>
+      <hr>
+      <h3 id=clientinclusie>Client- en inclusiegericht</h3>
+      <!--<input type="radio" id="vraag-1" name="jump1" tabindex="-1" style="opacity: 0; position: absolute;">-->
+      <div id="vraag1-scroll-anchor" tabindex="-1" style="height:1px;"></div>
+      <h4 id=vraag1>Empathie</h4>
+      <div class="vraag-group" data-group="vraag1">
+        <label class="sterk" for="vraag-sterk1"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans1"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt1"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende1"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*INLEVING (zowel cognitief als emotioneel) IN LEEF- EN DENKWERELD  VAN CLIËNTEN  *EIGEN REFERENTIEKADER KUNNEN/WILLEN AFSTEMMEN"></textarea>
+      <h4 id=vraag2>Groeikansen biedend</h4>
+      <div class="vraag-group" data-group="vraag2">
+        <label class="sterk" for="vraag-sterk2"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans2"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt2"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende2"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*FOCUS OP ZELFREGIE/AUTONOMIE  *ZINGEVING  *BLIJVEN ZOEKEN NAAR INCLUSIEKANSEN  *HERSTELGERICHT WERKEN  *HEREVALUEREN BESLISSINGEN"></textarea>
+      <h4 id=vraag3>Zorgvraag centraal stellend</h4>
+      <div class="vraag-group" data-group="vraag3">
+        <label class="sterk" for="vraag-sterk3"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans3"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt3"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende3"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder='*OP MAAT VAN CLIËNT EN CONTEXT  *NAAST en MET DE CLIËNT  *FOCUS OP "KWALITEIT VAN LEVEN"  *LUISTEREN NAAR ZORG-BEHOEFTE VAN DE CLIËNT REKENING HOUDEND MET DE DOOR TEAM OF ORGANISATIE VASTGESTELDE ZORGNODEN"'></textarea>
+      <h4 id=vraag4>"Goede huisvader/-moeder"</h4>
+      <div class="vraag-group" data-group="vraag4">
+        <label class="sterk" for="vraag-sterk4"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans4"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt4"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende4"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder='*HANDELEN VANUIT BESTE INTENTIES EN VERANTWOORDELIJKHEID  *CLIËNTGERICHT AFSTEMMEN OP WAARDEN EN NORMEN KIDS (DIFFERENTIËREN)  *OMGANG EN AANPAK ZOALS "THUIS"'></textarea>
+      <h4 id=vraag5>Onderscheid maken tussen gedrag vs persoon</h4>
+      <div class="vraag-group" data-group="vraag5">
+        <label class="sterk" for="vraag-sterk5"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans5"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt5"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende5"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*GEWELDLOOS COMMUNICEREN  *DUIDELIJKE FOCUS OP GEDRAG  (NIET OP DE PERSOON SPELEND)  *OOK DUIDEN NAAR DE CONTEXT"></textarea>
+
+      <hr> 
+      <h3 id=communicatie>Communicatie(f)</h3>
+      <h4 id=vraag6>Hanteren van feedback ifv groei</h4>
+      <div class="vraag-group" data-group="vraag6">
+        <label class="sterk" for="vraag-sterk6"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans6"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt6"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende6"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*KUNNEN/WILLEN  VRAGEN, GEVEN EN ONTVANGEN VAN FEEDBACK  *VERWERKEN EN VASTHOUDEN VAN DE FEEDBACK  (er iets mee doen)"></textarea>
+
+      <h4 id=vraag7>Verbindend communiceren</h4>
+      <div class="vraag-group" data-group="vraag7">
+        <label class="sterk" for="vraag-sterk7"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans7"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt7"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende7"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*ECHT/ACTIEF LUISTEREN  *VASTHOUDEN VAN COMMUNICATIE  *CORRECT COMMUNICEREN"></textarea>
+
+      <h4 id=vraag8>(Juist) Gebruik juiste kanalen en  personen</h4>
+      <div class="vraag-group" data-group="vraag8">
+        <label class="sterk" for="vraag-sterk8"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans8"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt8"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende8"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*CORRECTE BRIEFING  *GEBRUIK ZOL, MAIL, PERSOONLIJK PLAN….  *OPEN COMMUNICATIE  *VOLGT DE ORGANISATIESTRUKTUUR Aanpassen naar de context  (collega's, ouders, familie, cliënten) *COMMUNICATIESTIJL WILLEN EN KUNNEN AANPASSEN  *LAAGDREMPELIG (PROFESSIONEEL)  *REKENING HOUDEND MET LEEFTIJD"></textarea>
+
+      <h4 id=vraag9>Aanpassen naar de context  (collega's, ouders, familie, cliënten)</h4>
+      <div class="vraag-group" data-group="vraag9">
+        <label class="sterk" for="vraag-sterk9"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans9"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt9"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende9"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*COMMUNICATIESTIJL WILLEN EN KUNNEN AANPASSEN  *LAAGDREMPELIG (PROFESSIONEEL)  *REKENING HOUDEND MET LEEFTIJD"  ></textarea>
+
+      <h4 id=vraag10>Onderscheiden  relevant - irrelevant</h4>
+      <div class="vraag-group" data-group="vraag10">
+        <label class="sterk" for="vraag-sterk10"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans10"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt10"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende10"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*HANTEERT &quot;NICE TO KNOW&quot; VERSUS &quot;NEED TO KNOW&quot;  *BEKWAAM OM ESSENTIE TE ZIEN EN ZICH NIET VERLIEZEN IN DETAILS"></textarea>
+
+      <hr> 
+      <h3 id=professioneel>Professioneel</h3>
+      <h4 id=vraag11>Werk-ethiek</h4>
+      <div class="vraag-group" data-group="vraag11">
+        <label class="sterk" for="vraag-sterk11"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans11"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt11"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende11"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*FUNCTIONEREN NAAR ALGEMENE  (en KIDS-specifieke) CULTURELE, ETHISCHE, MAATSCHAPPELIJKE  REGELS of AFSPRAKEN  *AUTHENTIEK (WERK)FUNCTIONEREN"></textarea>
+
+      <h4 id=vraag12>Bewust van rolmodel</h4>
+      <div class="vraag-group" data-group="vraag12">
+        <label class="sterk" for="vraag-sterk12"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans12"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt12"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende12"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*ZELF DE AFSPRAKEN EN REGELS  TOEPASSEN / NALEVEN  *FOUTEN TOEGEVEN  *OPENHEID EIGEN WAARDEN / NORMEN  *GOED VOORBEELD (OMGANG/COMMUNICATIE)"></textarea>
+
+      <h4 id=vraag13>Rol/Mandaat  effectief opnemen</h4>
+      <div class="vraag-group" data-group="vraag13">
+        <label class="sterk" for="vraag-sterk13"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans13"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt13"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende13"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*VERANTWOORDELIJKHEID NEMEN  *HANTEREN PSYCHOPEDAGOGISCH KADER  *BEREIDHEID TOT LEREN én GROEIEN/ONTWIKKELEN"></textarea>
+
+      <h4 id=vraag14>Kalm brein</h4>
+      <div class="vraag-group" data-group="vraag14">
+        <label class="sterk" for="vraag-sterk14"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans14"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt14"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende14"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*STEEDS BINNEN VENSTER BLIJVEN  *MET ZELFREFLECTIE en ECHTHEID  *GEBRUIK VISIES en METHODIEKEN ZOALS TRAUMABRIL, DRAMA- DRIEHOEK, ..."></textarea>
+
+      <h4 id=vraag15>(groeiende) EXPERTISE</h4>
+      <div class="vraag-group" data-group="vraag15">
+        <label class="sterk" for="vraag-sterk15"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans15"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt15"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende15"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="GEBRUIKT ACTIEF KENNIS EN VAARDIGHEDEN  EXPERTISE DELING  ONDERNEEMT INITIATIEVEN OM TE GROEIEN IN COMPETENTIES EN EXPERTISE"></textarea>
+
+      <hr> 
+      <h3 id=passiewerkzin>Passie en Werkzin</h3>
+      <h4 id=vraag16>Beroepsfier</h4>
+      <div class="vraag-group" data-group="vraag16">
+        <label class="sterk" for="vraag-sterk16"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans16"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt16"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende16"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*HET GOED WILLEN DOEN  *EXPERTISE (blijvend) BIEDEN  *FIER OP JOB EN OP KIDS"></textarea>
+
+      <h4 id=vraag17>Gedreven</h4>
+      <div class="vraag-group" data-group="vraag17">
+        <label class="sterk" for="vraag-sterk17"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans17"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt17"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende17"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*POSITIEF INGESTELD  *OPRECHTE INZET EN INTERESSE    *INTRINSIEKE MOTIVATIE (tonen) tot GROEI  *JOB GOED/ENTHOUSIAST DOEN"></textarea>
+
+      <h4 id=vraag18>Hartelijk</h4>
+      <div class="vraag-group" data-group="vraag18">
+        <label class="sterk" for="vraag-sterk18"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans18"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt18"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende18"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*VRIENDELIJK  *ENTHOUSIAST  *ZICHZELF ZIJN  *OPENSTAAN VOOR ANDEREN"></textarea>
+
+      <h4 id=vraag19>Loyaal aan KIDS  én aan team</h4>
+      <div class="vraag-group" data-group="vraag19">
+        <label class="sterk" for="vraag-sterk19"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans19"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt19"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende19"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*POSITIEF COMMUNICEREN  OVER JE WERKPLEK  *NEGATIEVE NIET VERALGEMENEN  *LOYALITEIT BINNEN EN BUITEN KIDS- MUREN"></textarea>
+
+      <h4 id=vraag20>Ondernemend</h4>
+      <div class="vraag-group" data-group="vraag20">
+        <label class="sterk" for="vraag-sterk20"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans20"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt20"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende20"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*INITIATIEVEN NEMEN  (CLIËNT, LEEFGROEP, CLUSTER, KIDS)  *CREATIEF  *IDEEËN LEVEREN"></textarea>
+
+      <hr> 
+      <h3 id=teamsamenwerken>Team-gericht, Samenwerken</h3>
+      <h4 id=vraag21>Integer en Betrouwbaar</h4>
+      <div class="vraag-group" data-group="vraag21">
+        <label class="sterk" for="vraag-sterk21"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans21"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt21"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende21"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*EERLIJK, DISCREET, RESPECT  *DOEN WAT JE ZEGT (consequent)  & ZEGGEN WAT JE DOET (communicatie)  *VEILIGHEID, VERTROUWEN  *VERANTWOORDELIJKHEID"></textarea>
+
+      <h4 id=vraag22>(team- en organisatie) Flexibel</h4>
+      <div class="vraag-group" data-group="vraag22">
+        <label class="sterk" for="vraag-sterk22"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans22"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt22"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende22"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*GELIJKE WERK- EN TAKENVERDELING  *PRAKTISCH: INVALLEN, LANGER BLIJVEN, …  *AANPASSEN AAN VERANDERINGEN  (korte termijn)  *FLEXIBEL ifv de CLIËNT en het PSYCHOPEDAGOGISCH DENKKADER"></textarea>
+
+      <h4 id=vraag23>Respecteren teambeslissingen</h4>
+      <div class="vraag-group" data-group="vraag23">
+        <label class="sterk" for="vraag-sterk23"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans23"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt23"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende23"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*CONSENSUS MAKEND IN OVERLEG  *UITVOEREN VAN AFSPRAKEN  *EVALUEREN EN BIJSTUREN"></textarea>
+
+      <h4 id=vraag24>Opname taak en rol (en grenzen…)</h4>
+      <div class="vraag-group" data-group="vraag24">
+        <label class="sterk" for="vraag-sterk24"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans24"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt24"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende24"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*VERANTWOORDELIJKHEID NEMEN  *GRENZEN AANGEVEN EN BEWAKEN  *VERLEGGEN COMFORTZONE"></textarea>
+
+      <h4 id=vraag25>Inbreng in team-overleggen</h4>
+      <div class="vraag-group" data-group="vraag25">
+        <label class="sterk" for="vraag-sterk25"><span>STERK! KWALITEIT!</span></label>
+        <label class="groeikans" for="vraag-groeikans25"><span>GROEIKANS</span></label>
+        <label class="werkpunt" for="vraag-werkpunt25"><span>WERKPUNT</span></label>
+        <label class="onvoldoende" for="vraag-onvoldoende25"><span>ONVOLDOENDE</span></label>
+      </div>
+      <textarea class="feedback" rows="2" placeholder="*GOEDE GESPREKSVAARDIGHEDEN (actief luisteren, samenvatten, vragen, iedereen aan bod laten, besluiten)  *ACTIEVE INBRENG IN TEAM"></textarea>
+
+      <input type="submit" value="Indienen">
+
+    </div>
+
+    <div class="grid">
+      <a href="#clientinclusie"><span class="grid-cell" style="font-weight: bolder; background-color: #F8CBAD;">Cliënt- en Inclusie gericht</span></a>
+      <a href="#communicatie"><span class="grid-cell" style="font-weight: bolder; background-color: #F8CBAD;">Communicatie</span></a>
+      <a href="#professioneel"><span class="grid-cell" style="font-weight: bolder; background-color: #F8CBAD;">Professioneel</span></a>
+      <a href="#passiewerkzin"><span class="grid-cell" style="font-weight: bolder; background-color: #F8CBAD;">Passie en Werkzin</span></a>
+      <a href="#teamsamenwerken"><span class="grid-cell" style="font-weight: bolder; background-color: #F8CBAD;">Team-gericht, Samenwerken</span></a>
+
+      <!--<a href="#vraag1"><label for="vraag-1" style="cursor: pointer; font-size: 1.2em;"><span class="grid-cell" id="cell1">Empathie</span></label></a>-->
+      <button onclick="document.getElementById('vraag1-scroll-anchor').focus()" style="all: unset;"><span class="grid-cell" id="cell1">Empathie</span></button>
+      <a href="#vraag6"><span class="grid-cell" id="cell6">Hanteren van feedback ifv groei</span></a>
+      <a href="#vraag11"><span class="grid-cell" id="cell11">Werk-ethiek</span></a>
+      <a href="#vraag16"><span class="grid-cell" id="cell16">Beroepsfier</span></a>
+      <a href="#vraag21"><span class="grid-cell" id="cell21">Integer en Betrouwbaar</span></a>
+
+      <a href="#vraag2"><span class="grid-cell" id="cell2">Groeikansen biedend</span></a>
+      <a href="#vraag7"><span class="grid-cell" id="cell7">Verbindend communiceren</span></a>
+      <a href="#vraag12"><span class="grid-cell" id="cell12">Bewustzijn van rolmodel</span></a>
+      <a href="#vraag17"><span class="grid-cell" id="cell17">Gedreven</span></a>
+      <a href="#vraag22"><span class="grid-cell" id="cell22">(Team- en organisatie)Flexibel</span></a>
+
+      <a href="#vraag3"><span class="grid-cell" id="cell3">Zorgvraag centraal stellend</span></a>
+      <a href="#vraag8"><span class="grid-cell" id="cell8">(Juist) Gebruik juiste kanalen en personen</span></a>
+      <a href="#vraag13"><span class="grid-cell" id="cell13">Rol/Mandaat effectief opnemen</span></a>
+      <a href="#vraag18"><span class="grid-cell" id="cell18">Hartelijk</span></a>
+      <a href="#vraag23"><span class="grid-cell" id="cell23">Respecteren teambeslissingen</span></a>
+
+      <a href="#vraag4"><span class="grid-cell" id="cell4">"Goede huisvader/-moeder"</span></a>
+      <a href="#vraag9"><span class="grid-cell" id="cell9">Aanpassen naar de context (ouders, familie, cliënten)</span></a>
+      <a href="#vraag14"><span class="grid-cell" id="cell14">Kalm brein</span></a>
+      <a href="#vraag19"><span class="grid-cell" id="cell19">Loyaal aan KIDS, én aan team</span></a>
+      <a href="#vraag24"><span class="grid-cell" id="cell24">Opname Taak en Rol (en grenzen…)</span></a>
+
+      <a href="#vraag5"><span class="grid-cell" id="cell5">Onderscheid maken tussen gedrag vs persoon</span></a>
+      <a href="#vraag10"><span class="grid-cell" id="cell10">Onderscheiden relevant - irrelevant</span></a>
+      <a href="#vraag15"><span class="grid-cell" id="cell15">(groeiende) Expertise</span></a>
+      <a href="#vraag20"><span class="grid-cell" id="cell20">Ondernemend</span></a>
+      <a href="#vraag25"><span class="grid-cell" id="cell25">Inbreng in team-overleggen</span></a>
+    </div>
+  </form>
 </body>
-</html>
