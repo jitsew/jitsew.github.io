@@ -33,10 +33,31 @@
       padding: 0px;
     }
 
-    .form-and-grid input {
+    .form-and-grid input[type="radio"] {
       position: absolute;
-      opacity: 0;
       cursor: pointer;
+      opacity: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      height: 1px;
+    }
+
+    .left-section input[type="submit"] {
+      width: 50%;
+      max-width: 50%;
+      justify-self: center;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      min-height: 100px;
+      font-size: 20px;
+      font-weight: normal;
+      background-color: lightyellow;
+      border: 3px solid #000;
+    }
+
+    .left-section input[type="submit"]:hover {
+      font-weight: bolder;
     }
 
     .left-section {
@@ -67,7 +88,6 @@
 
     .vraag-group {
       display: grid;
-      align-items: center;
       justify-self: center;
       text-align: center;
       grid-template-columns: 1fr 1fr;
@@ -76,7 +96,7 @@
       width: 60%;
     }
 
-    .vraag-group label {
+    .vraag-group label, input[type="submit"] {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -130,14 +150,6 @@
       font-size: 0.8vw;
       transition: background-color 0.5s;
 
-    }
-
-    input[type="radio"] {
-      opacity: 0;
-      height: 1px;
-      margin: 0;
-      padding: 0;
-      border: 0;
     }
 
     /* VRAAG 1 */
@@ -819,131 +831,131 @@
   </style>
 </head>
 <body>
-  <form class="form-and-grid" target="_self">
-    <input type="radio" name="vraag1" id="vraag-sterk1">
-    <input type="radio" name="vraag1" id="vraag-groeikans1">
-    <input type="radio" name="vraag1" id="vraag-werkpunt1">
-    <input type="radio" name="vraag1" id="vraag-onvoldoende1">
+  <form class="form-and-grid" action="https://formspree.io/f/mzzrnjep" method="POST">
+    <input type="radio" name="vraag1" id="vraag-sterk1" value="sterk">
+    <input type="radio" name="vraag1" id="vraag-groeikans1" value="groeikans">
+    <input type="radio" name="vraag1" id="vraag-werkpunt1" value="werkpunt">
+    <input type="radio" name="vraag1" id="vraag-onvoldoende1" value="onvoldoende">
 
-    <input type="radio" name="vraag2" id="vraag-sterk2">
-    <input type="radio" name="vraag2" id="vraag-groeikans2">
-    <input type="radio" name="vraag2" id="vraag-werkpunt2">
-    <input type="radio" name="vraag2" id="vraag-onvoldoende2">
+    <input type="radio" name="vraag2" id="vraag-sterk2" value="sterk">
+    <input type="radio" name="vraag2" id="vraag-groeikans2" value="groeikans">
+    <input type="radio" name="vraag2" id="vraag-werkpunt2" value="werkpunt">
+    <input type="radio" name="vraag2" id="vraag-onvoldoende2" value="onvoldoende">
 
-    <input type="radio" name="vraag3" id="vraag-sterk3">
-    <input type="radio" name="vraag3" id="vraag-groeikans3">
-    <input type="radio" name="vraag3" id="vraag-werkpunt3">
-    <input type="radio" name="vraag3" id="vraag-onvoldoende3">
+    <input type="radio" name="vraag3" id="vraag-sterk3" value="sterk">
+    <input type="radio" name="vraag3" id="vraag-groeikans3" value="groeikans">
+    <input type="radio" name="vraag3" id="vraag-werkpunt3" value="werkpunt">
+    <input type="radio" name="vraag3" id="vraag-onvoldoende3" value="onvoldoende">
 
-    <input type="radio" name="vraag4" id="vraag-sterk4">
-    <input type="radio" name="vraag4" id="vraag-groeikans4">
-    <input type="radio" name="vraag4" id="vraag-werkpunt4">
-    <input type="radio" name="vraag4" id="vraag-onvoldoende4">
+    <input type="radio" name="vraag4" id="vraag-sterk4" value="sterk">
+    <input type="radio" name="vraag4" id="vraag-groeikans4" value="groeikans">
+    <input type="radio" name="vraag4" id="vraag-werkpunt4" value="werkpunt">
+    <input type="radio" name="vraag4" id="vraag-onvoldoende4" value="onvoldoende">
 
-    <input type="radio" name="vraag5" id="vraag-sterk5">
-    <input type="radio" name="vraag5" id="vraag-groeikans5">
-    <input type="radio" name="vraag5" id="vraag-werkpunt5">
-    <input type="radio" name="vraag5" id="vraag-onvoldoende5">
+    <input type="radio" name="vraag5" id="vraag-sterk5" value="sterk">
+    <input type="radio" name="vraag5" id="vraag-groeikans5" value="groeikans">
+    <input type="radio" name="vraag5" id="vraag-werkpunt5" value="werkpunt">
+    <input type="radio" name="vraag5" id="vraag-onvoldoende5" value="onvoldoende">
 
-    <input type="radio" name="vraag6" id="vraag-sterk6">
-    <input type="radio" name="vraag6" id="vraag-groeikans6"> 
-    <input type="radio" name="vraag6" id="vraag-werkpunt6"> 
-    <input type="radio" name="vraag6" id="vraag-onvoldoende6">
+    <input type="radio" name="vraag6" id="vraag-sterk6" value="sterk">
+    <input type="radio" name="vraag6" id="vraag-groeikans6" value="groeikans"> 
+    <input type="radio" name="vraag6" id="vraag-werkpunt6" value="werkpunt"> 
+    <input type="radio" name="vraag6" id="vraag-onvoldoende6" value="onvoldoende">
 
-    <input type="radio" name="vraag7" id="vraag-sterk7">
-    <input type="radio" name="vraag7" id="vraag-groeikans7"> 
-    <input type="radio" name="vraag7" id="vraag-werkpunt7"> 
-    <input type="radio" name="vraag7" id="vraag-onvoldoende7">
+    <input type="radio" name="vraag7" id="vraag-sterk7" value="sterk">
+    <input type="radio" name="vraag7" id="vraag-groeikans7" value="groeikans"> 
+    <input type="radio" name="vraag7" id="vraag-werkpunt7" value="werkpunt"> 
+    <input type="radio" name="vraag7" id="vraag-onvoldoende7" value="onvoldoende">
 
-    <input type="radio" name="vraag8" id="vraag-sterk8">
-    <input type="radio" name="vraag8" id="vraag-groeikans8"> 
-    <input type="radio" name="vraag8" id="vraag-werkpunt8"> 
-    <input type="radio" name="vraag8" id="vraag-onvoldoende8">
+    <input type="radio" name="vraag8" id="vraag-sterk8" value="sterk">
+    <input type="radio" name="vraag8" id="vraag-groeikans8" value="groeikans"> 
+    <input type="radio" name="vraag8" id="vraag-werkpunt8" value="werkpunt"> 
+    <input type="radio" name="vraag8" id="vraag-onvoldoende8" value="onvoldoende">
 
-    <input type="radio" name="vraag9" id="vraag-sterk9">
-    <input type="radio" name="vraag9" id="vraag-groeikans9"> 
-    <input type="radio" name="vraag9" id="vraag-werkpunt9"> 
-    <input type="radio" name="vraag9" id="vraag-onvoldoende9">
+    <input type="radio" name="vraag9" id="vraag-sterk9" value="sterk">
+    <input type="radio" name="vraag9" id="vraag-groeikans9" value="groeikans"> 
+    <input type="radio" name="vraag9" id="vraag-werkpunt9" value="werkpunt"> 
+    <input type="radio" name="vraag9" id="vraag-onvoldoende9" value="onvoldoende">
 
-    <input type="radio" name="vraag10" id="vraag-sterk10">
-    <input type="radio" name="vraag10" id="vraag-groeikans10"> 
-    <input type="radio" name="vraag10" id="vraag-werkpunt10"> 
-    <input type="radio" name="vraag10" id="vraag-onvoldoende10">
+    <input type="radio" name="vraag10" id="vraag-sterk10" value="sterk">
+    <input type="radio" name="vraag10" id="vraag-groeikans10" value="groeikans"> 
+    <input type="radio" name="vraag10" id="vraag-werkpunt10" value="werkpunt"> 
+    <input type="radio" name="vraag10" id="vraag-onvoldoende10" value="onvoldoende">
 
-    <input type="radio" name="vraag11" id="vraag-sterk11">
-    <input type="radio" name="vraag11" id="vraag-groeikans11"> 
-    <input type="radio" name="vraag11" id="vraag-werkpunt11"> 
-    <input type="radio" name="vraag11" id="vraag-onvoldoende11">
+    <input type="radio" name="vraag11" id="vraag-sterk11" value="sterk">
+    <input type="radio" name="vraag11" id="vraag-groeikans11" value="groeikans"> 
+    <input type="radio" name="vraag11" id="vraag-werkpunt11" value="werkpunt"> 
+    <input type="radio" name="vraag11" id="vraag-onvoldoende11" value="onvoldoende">
 
-    <input type="radio" name="vraag12" id="vraag-sterk12">
-    <input type="radio" name="vraag12" id="vraag-groeikans12"> 
-    <input type="radio" name="vraag12" id="vraag-werkpunt12"> 
-    <input type="radio" name="vraag12" id="vraag-onvoldoende12">
+    <input type="radio" name="vraag12" id="vraag-sterk12" value="sterk">
+    <input type="radio" name="vraag12" id="vraag-groeikans12" value="groeikans"> 
+    <input type="radio" name="vraag12" id="vraag-werkpunt12" value="werkpunt"> 
+    <input type="radio" name="vraag12" id="vraag-onvoldoende12" value="onvoldoende">
 
-    <input type="radio" name="vraag13" id="vraag-sterk13">
-    <input type="radio" name="vraag13" id="vraag-groeikans13"> 
-    <input type="radio" name="vraag13" id="vraag-werkpunt13"> 
-    <input type="radio" name="vraag13" id="vraag-onvoldoende13">
+    <input type="radio" name="vraag13" id="vraag-sterk13" value="sterk">
+    <input type="radio" name="vraag13" id="vraag-groeikans13" value="groeikans"> 
+    <input type="radio" name="vraag13" id="vraag-werkpunt13" value="werkpunt"> 
+    <input type="radio" name="vraag13" id="vraag-onvoldoende13" value="onvoldoende">
 
-    <input type="radio" name="vraag14" id="vraag-sterk14">
-    <input type="radio" name="vraag14" id="vraag-groeikans14"> 
-    <input type="radio" name="vraag14" id="vraag-werkpunt14"> 
-    <input type="radio" name="vraag14" id="vraag-onvoldoende14">
+    <input type="radio" name="vraag14" id="vraag-sterk14" value="sterk">
+    <input type="radio" name="vraag14" id="vraag-groeikans14" value="groeikans"> 
+    <input type="radio" name="vraag14" id="vraag-werkpunt14" value="werkpunt"> 
+    <input type="radio" name="vraag14" id="vraag-onvoldoende14" value="onvoldoende">
 
-    <input type="radio" name="vraag15" id="vraag-sterk15">
-    <input type="radio" name="vraag15" id="vraag-groeikans15"> 
-    <input type="radio" name="vraag15" id="vraag-werkpunt15"> 
-    <input type="radio" name="vraag15" id="vraag-onvoldoende15">
+    <input type="radio" name="vraag15" id="vraag-sterk15" value="sterk">
+    <input type="radio" name="vraag15" id="vraag-groeikans15" value="groeikans"> 
+    <input type="radio" name="vraag15" id="vraag-werkpunt15" value="werkpunt"> 
+    <input type="radio" name="vraag15" id="vraag-onvoldoende15" value="onvoldoende">
 
-    <input type="radio" name="vraag16" id="vraag-sterk16">
-    <input type="radio" name="vraag16" id="vraag-groeikans16"> 
-    <input type="radio" name="vraag16" id="vraag-werkpunt16"> 
-    <input type="radio" name="vraag16" id="vraag-onvoldoende16">
+    <input type="radio" name="vraag16" id="vraag-sterk16" value="sterk">
+    <input type="radio" name="vraag16" id="vraag-groeikans16" value="groeikans"> 
+    <input type="radio" name="vraag16" id="vraag-werkpunt16" value="werkpunt"> 
+    <input type="radio" name="vraag16" id="vraag-onvoldoende16" value="onvoldoende">
 
-    <input type="radio" name="vraag17" id="vraag-sterk17">
-    <input type="radio" name="vraag17" id="vraag-groeikans17"> 
-    <input type="radio" name="vraag17" id="vraag-werkpunt17"> 
-    <input type="radio" name="vraag17" id="vraag-onvoldoende17">
+    <input type="radio" name="vraag17" id="vraag-sterk17" value="sterk">
+    <input type="radio" name="vraag17" id="vraag-groeikans17" value="groeikans"> 
+    <input type="radio" name="vraag17" id="vraag-werkpunt17" value="werkpunt"> 
+    <input type="radio" name="vraag17" id="vraag-onvoldoende17" value="onvoldoende">
 
-    <input type="radio" name="vraag18" id="vraag-sterk18">
-    <input type="radio" name="vraag18" id="vraag-groeikans18"> 
-    <input type="radio" name="vraag18" id="vraag-werkpunt18"> 
-    <input type="radio" name="vraag18" id="vraag-onvoldoende18">
+    <input type="radio" name="vraag18" id="vraag-sterk18" value="sterk">
+    <input type="radio" name="vraag18" id="vraag-groeikans18" value="groeikans"> 
+    <input type="radio" name="vraag18" id="vraag-werkpunt18" value="werkpunt"> 
+    <input type="radio" name="vraag18" id="vraag-onvoldoende18" value="onvoldoende">
 
-    <input type="radio" name="vraag19" id="vraag-sterk19">
-    <input type="radio" name="vraag19" id="vraag-groeikans19"> 
-    <input type="radio" name="vraag19" id="vraag-werkpunt19"> 
-    <input type="radio" name="vraag19" id="vraag-onvoldoende19">
+    <input type="radio" name="vraag19" id="vraag-sterk19" value="sterk">
+    <input type="radio" name="vraag19" id="vraag-groeikans19" value="groeikans"> 
+    <input type="radio" name="vraag19" id="vraag-werkpunt19" value="werkpunt"> 
+    <input type="radio" name="vraag19" id="vraag-onvoldoende19" value="onvoldoende">
 
-    <input type="radio" name="vraag20" id="vraag-sterk20">
-    <input type="radio" name="vraag20" id="vraag-groeikans20"> 
-    <input type="radio" name="vraag20" id="vraag-werkpunt20"> 
-    <input type="radio" name="vraag20" id="vraag-onvoldoende20">
+    <input type="radio" name="vraag20" id="vraag-sterk20" value="sterk">
+    <input type="radio" name="vraag20" id="vraag-groeikans20" value="groeikans"> 
+    <input type="radio" name="vraag20" id="vraag-werkpunt20" value="werkpunt"> 
+    <input type="radio" name="vraag20" id="vraag-onvoldoende20" value="onvoldoende">
 
-    <input type="radio" name="vraag21" id="vraag-sterk21">
-    <input type="radio" name="vraag21" id="vraag-groeikans21"> 
-    <input type="radio" name="vraag21" id="vraag-werkpunt21"> 
-    <input type="radio" name="vraag21" id="vraag-onvoldoende21">
+    <input type="radio" name="vraag21" id="vraag-sterk21" value="sterk">
+    <input type="radio" name="vraag21" id="vraag-groeikans21" value="groeikans"> 
+    <input type="radio" name="vraag21" id="vraag-werkpunt21" value="werkpunt"> 
+    <input type="radio" name="vraag21" id="vraag-onvoldoende21" value="onvoldoende">
 
-    <input type="radio" name="vraag22" id="vraag-sterk22">
-    <input type="radio" name="vraag22" id="vraag-groeikans22"> 
-    <input type="radio" name="vraag22" id="vraag-werkpunt22"> 
-    <input type="radio" name="vraag22" id="vraag-onvoldoende22">
+    <input type="radio" name="vraag22" id="vraag-sterk22" value="sterk">
+    <input type="radio" name="vraag22" id="vraag-groeikans22" value="groeikans"> 
+    <input type="radio" name="vraag22" id="vraag-werkpunt22" value="werkpunt"> 
+    <input type="radio" name="vraag22" id="vraag-onvoldoende22" value="onvoldoende">
 
-    <input type="radio" name="vraag23" id="vraag-sterk23">
-    <input type="radio" name="vraag23" id="vraag-groeikans23"> 
-    <input type="radio" name="vraag23" id="vraag-werkpunt23"> 
-    <input type="radio" name="vraag23" id="vraag-onvoldoende23">
+    <input type="radio" name="vraag23" id="vraag-sterk23" value="sterk">
+    <input type="radio" name="vraag23" id="vraag-groeikans23" value="groeikans"> 
+    <input type="radio" name="vraag23" id="vraag-werkpunt23" value="werkpunt"> 
+    <input type="radio" name="vraag23" id="vraag-onvoldoende23" value="onvoldoende">
 
-    <input type="radio" name="vraag24" id="vraag-sterk24">
-    <input type="radio" name="vraag24" id="vraag-groeikans24"> 
-    <input type="radio" name="vraag24" id="vraag-werkpunt24"> 
-    <input type="radio" name="vraag24" id="vraag-onvoldoende24">
+    <input type="radio" name="vraag24" id="vraag-sterk24" value="sterk">
+    <input type="radio" name="vraag24" id="vraag-groeikans24" value="groeikans"> 
+    <input type="radio" name="vraag24" id="vraag-werkpunt24" value="werkpunt"> 
+    <input type="radio" name="vraag24" id="vraag-onvoldoende24" value="onvoldoende">
 
-    <input type="radio" name="vraag25" id="vraag-sterk25">
-    <input type="radio" name="vraag25" id="vraag-groeikans25"> 
-    <input type="radio" name="vraag25" id="vraag-werkpunt25"> 
-    <input type="radio" name="vraag25" id="vraag-onvoldoende25">
+    <input type="radio" name="vraag25" id="vraag-sterk25" value="sterk">
+    <input type="radio" name="vraag25" id="vraag-groeikans25" value="groeikans"> 
+    <input type="radio" name="vraag25" id="vraag-werkpunt25" value="werkpunt"> 
+    <input type="radio" name="vraag25" id="vraag-onvoldoende25" value="onvoldoende">
 
 
     <div class="left-section">
@@ -959,7 +971,7 @@
         <label class="werkpunt" for="vraag-werkpunt1"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende1"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*INLEVING (zowel cognitief als emotioneel) IN LEEF- EN DENKWERELD  VAN CLIËNTEN  *EIGEN REFERENTIEKADER KUNNEN/WILLEN AFSTEMMEN"></textarea>
+      <textarea class="feedback" name="tekst-vraag1" rows="2" placeholder="*INLEVING (zowel cognitief als emotioneel) IN LEEF- EN DENKWERELD  VAN CLIËNTEN  *EIGEN REFERENTIEKADER KUNNEN/WILLEN AFSTEMMEN"></textarea>
       <h4 id=vraag2>Groeikansen biedend</h4>
       <div class="vraag-group" data-group="vraag2">
         <label class="sterk" for="vraag-sterk2"><span>STERK! KWALITEIT!</span></label>
@@ -967,7 +979,7 @@
         <label class="werkpunt" for="vraag-werkpunt2"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende2"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*FOCUS OP ZELFREGIE/AUTONOMIE  *ZINGEVING  *BLIJVEN ZOEKEN NAAR INCLUSIEKANSEN  *HERSTELGERICHT WERKEN  *HEREVALUEREN BESLISSINGEN"></textarea>
+      <textarea class="feedback" name="tekst-vraag2" rows="2" placeholder="*FOCUS OP ZELFREGIE/AUTONOMIE  *ZINGEVING  *BLIJVEN ZOEKEN NAAR INCLUSIEKANSEN  *HERSTELGERICHT WERKEN  *HEREVALUEREN BESLISSINGEN"></textarea>
       <h4 id=vraag3>Zorgvraag centraal stellend</h4>
       <div class="vraag-group" data-group="vraag3">
         <label class="sterk" for="vraag-sterk3"><span>STERK! KWALITEIT!</span></label>
@@ -975,7 +987,8 @@
         <label class="werkpunt" for="vraag-werkpunt3"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende3"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder='*OP MAAT VAN CLIËNT EN CONTEXT  *NAAST en MET DE CLIËNT  *FOCUS OP "KWALITEIT VAN LEVEN"  *LUISTEREN NAAR ZORG-BEHOEFTE VAN DE CLIËNT REKENING HOUDEND MET DE DOOR TEAM OF ORGANISATIE VASTGESTELDE ZORGNODEN"'></textarea>
+      <textarea class="feedback" name="tekst-vraag3" rows="2" placeholder='*OP MAAT VAN CLIËNT EN CONTEXT  *NAAST en MET DE CLIËNT  *FOCUS OP "KWALITEIT VAN LEVEN"  *LUISTEREN NAAR ZORG-BEHOEFTE VAN DE CLIËNT REKENING HOUDEND MET DE DOOR TEAM OF ORGANISATIE VASTGESTELDE ZORGNODEN"'></textarea>
+
       <h4 id=vraag4>"Goede huisvader/-moeder"</h4>
       <div class="vraag-group" data-group="vraag4">
         <label class="sterk" for="vraag-sterk4"><span>STERK! KWALITEIT!</span></label>
@@ -983,7 +996,8 @@
         <label class="werkpunt" for="vraag-werkpunt4"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende4"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder='*HANDELEN VANUIT BESTE INTENTIES EN VERANTWOORDELIJKHEID  *CLIËNTGERICHT AFSTEMMEN OP WAARDEN EN NORMEN KIDS (DIFFERENTIËREN)  *OMGANG EN AANPAK ZOALS "THUIS"'></textarea>
+      <textarea class="feedback" name="tekst-vraag4" rows="2" placeholder='*HANDELEN VANUIT BESTE INTENTIES EN VERANTWOORDELIJKHEID  *CLIËNTGERICHT AFSTEMMEN OP WAARDEN EN NORMEN KIDS (DIFFERENTIËREN)  *OMGANG EN AANPAK ZOALS "THUIS"'></textarea>
+
       <h4 id=vraag5>Onderscheid maken tussen gedrag vs persoon</h4>
       <div class="vraag-group" data-group="vraag5">
         <label class="sterk" for="vraag-sterk5"><span>STERK! KWALITEIT!</span></label>
@@ -991,7 +1005,7 @@
         <label class="werkpunt" for="vraag-werkpunt5"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende5"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*GEWELDLOOS COMMUNICEREN  *DUIDELIJKE FOCUS OP GEDRAG  (NIET OP DE PERSOON SPELEND)  *OOK DUIDEN NAAR DE CONTEXT"></textarea>
+      <textarea class="feedback" name="tekst-vraag5" rows="2" placeholder="*GEWELDLOOS COMMUNICEREN  *DUIDELIJKE FOCUS OP GEDRAG  (NIET OP DE PERSOON SPELEND)  *OOK DUIDEN NAAR DE CONTEXT"></textarea>
 
       <hr> 
       <h3 id=communicatie>Communicatie(f)</h3>
@@ -1002,7 +1016,7 @@
         <label class="werkpunt" for="vraag-werkpunt6"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende6"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*KUNNEN/WILLEN  VRAGEN, GEVEN EN ONTVANGEN VAN FEEDBACK  *VERWERKEN EN VASTHOUDEN VAN DE FEEDBACK  (er iets mee doen)"></textarea>
+      <textarea class="feedback" name="tekst-vraag6" rows="2" placeholder="*KUNNEN/WILLEN  VRAGEN, GEVEN EN ONTVANGEN VAN FEEDBACK  *VERWERKEN EN VASTHOUDEN VAN DE FEEDBACK  (er iets mee doen)"></textarea>
 
       <h4 id=vraag7>Verbindend communiceren</h4>
       <div class="vraag-group" data-group="vraag7">
@@ -1011,7 +1025,7 @@
         <label class="werkpunt" for="vraag-werkpunt7"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende7"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*ECHT/ACTIEF LUISTEREN  *VASTHOUDEN VAN COMMUNICATIE  *CORRECT COMMUNICEREN"></textarea>
+      <textarea class="feedback" name="tekst-vraag7" rows="2" placeholder="*ECHT/ACTIEF LUISTEREN  *VASTHOUDEN VAN COMMUNICATIE  *CORRECT COMMUNICEREN"></textarea>
 
       <h4 id=vraag8>(Juist) Gebruik juiste kanalen en  personen</h4>
       <div class="vraag-group" data-group="vraag8">
@@ -1020,7 +1034,7 @@
         <label class="werkpunt" for="vraag-werkpunt8"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende8"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*CORRECTE BRIEFING  *GEBRUIK ZOL, MAIL, PERSOONLIJK PLAN….  *OPEN COMMUNICATIE  *VOLGT DE ORGANISATIESTRUKTUUR Aanpassen naar de context  (collega's, ouders, familie, cliënten) *COMMUNICATIESTIJL WILLEN EN KUNNEN AANPASSEN  *LAAGDREMPELIG (PROFESSIONEEL)  *REKENING HOUDEND MET LEEFTIJD"></textarea>
+      <textarea class="feedback" name="tekst-vraag8" rows="2" placeholder="*CORRECTE BRIEFING  *GEBRUIK ZOL, MAIL, PERSOONLIJK PLAN….  *OPEN COMMUNICATIE  *VOLGT DE ORGANISATIESTRUKTUUR Aanpassen naar de context  (collega's, ouders, familie, cliënten) *COMMUNICATIESTIJL WILLEN EN KUNNEN AANPASSEN  *LAAGDREMPELIG (PROFESSIONEEL)  *REKENING HOUDEND MET LEEFTIJD"></textarea>
 
       <h4 id=vraag9>Aanpassen naar de context  (collega's, ouders, familie, cliënten)</h4>
       <div class="vraag-group" data-group="vraag9">
@@ -1029,7 +1043,7 @@
         <label class="werkpunt" for="vraag-werkpunt9"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende9"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*COMMUNICATIESTIJL WILLEN EN KUNNEN AANPASSEN  *LAAGDREMPELIG (PROFESSIONEEL)  *REKENING HOUDEND MET LEEFTIJD"  ></textarea>
+      <textarea class="feedback" name="tekst-vraag9" rows="2" placeholder="*COMMUNICATIESTIJL WILLEN EN KUNNEN AANPASSEN  *LAAGDREMPELIG (PROFESSIONEEL)  *REKENING HOUDEND MET LEEFTIJD"  ></textarea>
 
       <h4 id=vraag10>Onderscheiden  relevant - irrelevant</h4>
       <div class="vraag-group" data-group="vraag10">
@@ -1038,7 +1052,7 @@
         <label class="werkpunt" for="vraag-werkpunt10"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende10"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*HANTEERT &quot;NICE TO KNOW&quot; VERSUS &quot;NEED TO KNOW&quot;  *BEKWAAM OM ESSENTIE TE ZIEN EN ZICH NIET VERLIEZEN IN DETAILS"></textarea>
+      <textarea class="feedback" name="tekst-vraag10" rows="2" placeholder="*HANTEERT &quot;NICE TO KNOW&quot; VERSUS &quot;NEED TO KNOW&quot;  *BEKWAAM OM ESSENTIE TE ZIEN EN ZICH NIET VERLIEZEN IN DETAILS"></textarea>
 
       <hr> 
       <h3 id=professioneel>Professioneel</h3>
@@ -1049,7 +1063,7 @@
         <label class="werkpunt" for="vraag-werkpunt11"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende11"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*FUNCTIONEREN NAAR ALGEMENE  (en KIDS-specifieke) CULTURELE, ETHISCHE, MAATSCHAPPELIJKE  REGELS of AFSPRAKEN  *AUTHENTIEK (WERK)FUNCTIONEREN"></textarea>
+      <textarea class="feedback" name="tekst-vraag11" rows="2" placeholder="*FUNCTIONEREN NAAR ALGEMENE  (en KIDS-specifieke) CULTURELE, ETHISCHE, MAATSCHAPPELIJKE  REGELS of AFSPRAKEN  *AUTHENTIEK (WERK)FUNCTIONEREN"></textarea>
 
       <h4 id=vraag12>Bewust van rolmodel</h4>
       <div class="vraag-group" data-group="vraag12">
@@ -1058,7 +1072,7 @@
         <label class="werkpunt" for="vraag-werkpunt12"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende12"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*ZELF DE AFSPRAKEN EN REGELS  TOEPASSEN / NALEVEN  *FOUTEN TOEGEVEN  *OPENHEID EIGEN WAARDEN / NORMEN  *GOED VOORBEELD (OMGANG/COMMUNICATIE)"></textarea>
+      <textarea class="feedback" name="tekst-vraag12" rows="2" placeholder="*ZELF DE AFSPRAKEN EN REGELS  TOEPASSEN / NALEVEN  *FOUTEN TOEGEVEN  *OPENHEID EIGEN WAARDEN / NORMEN  *GOED VOORBEELD (OMGANG/COMMUNICATIE)"></textarea>
 
       <h4 id=vraag13>Rol/Mandaat  effectief opnemen</h4>
       <div class="vraag-group" data-group="vraag13">
@@ -1067,7 +1081,7 @@
         <label class="werkpunt" for="vraag-werkpunt13"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende13"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*VERANTWOORDELIJKHEID NEMEN  *HANTEREN PSYCHOPEDAGOGISCH KADER  *BEREIDHEID TOT LEREN én GROEIEN/ONTWIKKELEN"></textarea>
+      <textarea class="feedback" name="tekst-vraag13" rows="2" placeholder="*VERANTWOORDELIJKHEID NEMEN  *HANTEREN PSYCHOPEDAGOGISCH KADER  *BEREIDHEID TOT LEREN én GROEIEN/ONTWIKKELEN"></textarea>
 
       <h4 id=vraag14>Kalm brein</h4>
       <div class="vraag-group" data-group="vraag14">
@@ -1076,7 +1090,7 @@
         <label class="werkpunt" for="vraag-werkpunt14"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende14"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*STEEDS BINNEN VENSTER BLIJVEN  *MET ZELFREFLECTIE en ECHTHEID  *GEBRUIK VISIES en METHODIEKEN ZOALS TRAUMABRIL, DRAMA- DRIEHOEK, ..."></textarea>
+      <textarea class="feedback" name="tekst-vraag14" rows="2" placeholder="*STEEDS BINNEN VENSTER BLIJVEN  *MET ZELFREFLECTIE en ECHTHEID  *GEBRUIK VISIES en METHODIEKEN ZOALS TRAUMABRIL, DRAMA- DRIEHOEK, ..."></textarea>
 
       <h4 id=vraag15>(groeiende) EXPERTISE</h4>
       <div class="vraag-group" data-group="vraag15">
@@ -1085,7 +1099,7 @@
         <label class="werkpunt" for="vraag-werkpunt15"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende15"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="GEBRUIKT ACTIEF KENNIS EN VAARDIGHEDEN  EXPERTISE DELING  ONDERNEEMT INITIATIEVEN OM TE GROEIEN IN COMPETENTIES EN EXPERTISE"></textarea>
+      <textarea class="feedback" name="tekst-vraag15" rows="2" placeholder="GEBRUIKT ACTIEF KENNIS EN VAARDIGHEDEN  EXPERTISE DELING  ONDERNEEMT INITIATIEVEN OM TE GROEIEN IN COMPETENTIES EN EXPERTISE"></textarea>
 
       <hr> 
       <h3 id=passiewerkzin>Passie en Werkzin</h3>
@@ -1096,7 +1110,7 @@
         <label class="werkpunt" for="vraag-werkpunt16"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende16"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*HET GOED WILLEN DOEN  *EXPERTISE (blijvend) BIEDEN  *FIER OP JOB EN OP KIDS"></textarea>
+      <textarea class="feedback" name="tekst-vraag16" rows="2" placeholder="*HET GOED WILLEN DOEN  *EXPERTISE (blijvend) BIEDEN  *FIER OP JOB EN OP KIDS"></textarea>
 
       <h4 id=vraag17>Gedreven</h4>
       <div class="vraag-group" data-group="vraag17">
@@ -1105,7 +1119,7 @@
         <label class="werkpunt" for="vraag-werkpunt17"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende17"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*POSITIEF INGESTELD  *OPRECHTE INZET EN INTERESSE    *INTRINSIEKE MOTIVATIE (tonen) tot GROEI  *JOB GOED/ENTHOUSIAST DOEN"></textarea>
+      <textarea class="feedback" name="tekst-vraag17" rows="2" placeholder="*POSITIEF INGESTELD  *OPRECHTE INZET EN INTERESSE    *INTRINSIEKE MOTIVATIE (tonen) tot GROEI  *JOB GOED/ENTHOUSIAST DOEN"></textarea>
 
       <h4 id=vraag18>Hartelijk</h4>
       <div class="vraag-group" data-group="vraag18">
@@ -1114,7 +1128,7 @@
         <label class="werkpunt" for="vraag-werkpunt18"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende18"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*VRIENDELIJK  *ENTHOUSIAST  *ZICHZELF ZIJN  *OPENSTAAN VOOR ANDEREN"></textarea>
+      <textarea class="feedback" name="tekst-vraag18" rows="2" placeholder="*VRIENDELIJK  *ENTHOUSIAST  *ZICHZELF ZIJN  *OPENSTAAN VOOR ANDEREN"></textarea>
 
       <h4 id=vraag19>Loyaal aan KIDS  én aan team</h4>
       <div class="vraag-group" data-group="vraag19">
@@ -1123,7 +1137,7 @@
         <label class="werkpunt" for="vraag-werkpunt19"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende19"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*POSITIEF COMMUNICEREN  OVER JE WERKPLEK  *NEGATIEVE NIET VERALGEMENEN  *LOYALITEIT BINNEN EN BUITEN KIDS- MUREN"></textarea>
+      <textarea class="feedback" name="tekst-vraag19" rows="2" placeholder="*POSITIEF COMMUNICEREN  OVER JE WERKPLEK  *NEGATIEVE NIET VERALGEMENEN  *LOYALITEIT BINNEN EN BUITEN KIDS- MUREN"></textarea>
 
       <h4 id=vraag20>Ondernemend</h4>
       <div class="vraag-group" data-group="vraag20">
@@ -1132,7 +1146,7 @@
         <label class="werkpunt" for="vraag-werkpunt20"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende20"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*INITIATIEVEN NEMEN  (CLIËNT, LEEFGROEP, CLUSTER, KIDS)  *CREATIEF  *IDEEËN LEVEREN"></textarea>
+      <textarea class="feedback" name="tekst-vraag20" rows="2" placeholder="*INITIATIEVEN NEMEN  (CLIËNT, LEEFGROEP, CLUSTER, KIDS)  *CREATIEF  *IDEEËN LEVEREN"></textarea>
 
       <hr> 
       <h3 id=teamsamenwerken>Team-gericht, Samenwerken</h3>
@@ -1143,7 +1157,7 @@
         <label class="werkpunt" for="vraag-werkpunt21"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende21"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*EERLIJK, DISCREET, RESPECT  *DOEN WAT JE ZEGT (consequent)  & ZEGGEN WAT JE DOET (communicatie)  *VEILIGHEID, VERTROUWEN  *VERANTWOORDELIJKHEID"></textarea>
+      <textarea class="feedback" name="tekst-vraag21" rows="2" placeholder="*EERLIJK, DISCREET, RESPECT  *DOEN WAT JE ZEGT (consequent)  & ZEGGEN WAT JE DOET (communicatie)  *VEILIGHEID, VERTROUWEN  *VERANTWOORDELIJKHEID"></textarea>
 
       <h4 id=vraag22>(team- en organisatie) Flexibel</h4>
       <div class="vraag-group" data-group="vraag22">
@@ -1152,7 +1166,7 @@
         <label class="werkpunt" for="vraag-werkpunt22"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende22"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*GELIJKE WERK- EN TAKENVERDELING  *PRAKTISCH: INVALLEN, LANGER BLIJVEN, …  *AANPASSEN AAN VERANDERINGEN  (korte termijn)  *FLEXIBEL ifv de CLIËNT en het PSYCHOPEDAGOGISCH DENKKADER"></textarea>
+      <textarea class="feedback" name="tekst-vraag22" rows="2" placeholder="*GELIJKE WERK- EN TAKENVERDELING  *PRAKTISCH: INVALLEN, LANGER BLIJVEN, …  *AANPASSEN AAN VERANDERINGEN  (korte termijn)  *FLEXIBEL ifv de CLIËNT en het PSYCHOPEDAGOGISCH DENKKADER"></textarea>
 
       <h4 id=vraag23>Respecteren teambeslissingen</h4>
       <div class="vraag-group" data-group="vraag23">
@@ -1161,7 +1175,7 @@
         <label class="werkpunt" for="vraag-werkpunt23"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende23"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*CONSENSUS MAKEND IN OVERLEG  *UITVOEREN VAN AFSPRAKEN  *EVALUEREN EN BIJSTUREN"></textarea>
+      <textarea class="feedback" name="tekst-vraag23" rows="2" placeholder="*CONSENSUS MAKEND IN OVERLEG  *UITVOEREN VAN AFSPRAKEN  *EVALUEREN EN BIJSTUREN"></textarea>
 
       <h4 id=vraag24>Opname taak en rol (en grenzen…)</h4>
       <div class="vraag-group" data-group="vraag24">
@@ -1170,7 +1184,7 @@
         <label class="werkpunt" for="vraag-werkpunt24"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende24"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*VERANTWOORDELIJKHEID NEMEN  *GRENZEN AANGEVEN EN BEWAKEN  *VERLEGGEN COMFORTZONE"></textarea>
+      <textarea class="feedback" name="tekst-vraag24" rows="2" placeholder="*VERANTWOORDELIJKHEID NEMEN  *GRENZEN AANGEVEN EN BEWAKEN  *VERLEGGEN COMFORTZONE"></textarea>
 
       <h4 id=vraag25>Inbreng in team-overleggen</h4>
       <div class="vraag-group" data-group="vraag25">
@@ -1179,9 +1193,9 @@
         <label class="werkpunt" for="vraag-werkpunt25"><span>WERKPUNT</span></label>
         <label class="onvoldoende" for="vraag-onvoldoende25"><span>ONVOLDOENDE</span></label>
       </div>
-      <textarea class="feedback" rows="2" placeholder="*GOEDE GESPREKSVAARDIGHEDEN (actief luisteren, samenvatten, vragen, iedereen aan bod laten, besluiten)  *ACTIEVE INBRENG IN TEAM"></textarea>
+      <textarea class="feedback" name="tekst-vraag25" rows="2" placeholder="*GOEDE GESPREKSVAARDIGHEDEN (actief luisteren, samenvatten, vragen, iedereen aan bod laten, besluiten)  *ACTIEVE INBRENG IN TEAM"></textarea>
 
-      <input type="submit" value="Indienen">
+      <input type="submit" name="submit" value="Verzend">
 
     </div>
 
